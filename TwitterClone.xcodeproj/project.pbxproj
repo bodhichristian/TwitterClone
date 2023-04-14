@@ -21,6 +21,7 @@
 		AAFA752529E8BD7D0025D59B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752429E8BD7D0025D59B /* ProfileView.swift */; };
 		AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752629E8BF1E0025D59B /* BackArrow.swift */; };
 		AAFA752929E8C7FF0025D59B /* Color-twitterBlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */; };
+		AAFA752B29E9D7B50025D59B /* TweetFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752A29E9D7B50025D59B /* TweetFilterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		AAFA752429E8BD7D0025D59B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AAFA752629E8BF1E0025D59B /* BackArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackArrow.swift; sourceTree = "<group>"; };
 		AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-twitterBlue.swift"; sourceTree = "<group>"; };
+		AAFA752A29E9D7B50025D59B /* TweetFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFilterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 		AAFA752229E8BD660025D59B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AAFA752A29E9D7B50025D59B /* TweetFilterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */,
 				AAAFCC3A29E85BA100CCA835 /* ExploreView.swift in Sources */,
 				AAAFCC3329E857CC00CCA835 /* MainTabView.swift in Sources */,
+				AAFA752B29E9D7B50025D59B /* TweetFilterViewModel.swift in Sources */,
 				AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */,
 				AAAFCC3C29E85BBB00CCA835 /* NotificationsView.swift in Sources */,
 			);
