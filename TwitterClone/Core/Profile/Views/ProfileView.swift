@@ -128,28 +128,11 @@ extension ProfileView {
             .foregroundColor(.primary.opacity((0.6)))
 
             // Following/Followers Count
-            HStack {
-                // Following
-                HStack(alignment: .bottom, spacing: 2) {
-                    Text("212")
-                        .bold()
-                    Text("Following")
-                        .foregroundColor(.primary.opacity((0.6)))
-                }
-                // Followers
-                HStack(alignment: .bottom, spacing: 2) {
-                    Text("6.9M")
-                        .bold()
-                    Text("Followers")
-                        .foregroundColor(.primary.opacity((0.6)))
-                }
-            }
-            .font(.caption2)
-            .padding(.vertical, 12)
+            FollowingFollowersView(following: 666, followers: 999)
+                .padding(.vertical, 12)
         }
         // Top VStack modifiers
         .padding(.horizontal)
-        
     }
     
     var tweetFilterBar: some View {
@@ -180,7 +163,6 @@ extension ProfileView {
             }
         }
         .overlay(Divider().offset(y: 14))
-        
     }
     
     var tweetsView: some View {

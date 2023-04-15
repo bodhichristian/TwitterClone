@@ -10,12 +10,11 @@ import SwiftUI
 struct TwitterBlueB: View {
     var body: some View {
         Image("twitterBlueB")
-        
             .resizable()
             .scaledToFit()
-        
+            .colorInvert()
+            .colorMultiply(.twitterBlue)
             .frame(width: 60)
-            .shadow(color: .twitterBlue, radius: 0.5, x: -2, y: 2)
     }
 }
 
