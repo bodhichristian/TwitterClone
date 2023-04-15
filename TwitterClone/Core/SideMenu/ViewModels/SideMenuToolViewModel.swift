@@ -15,7 +15,7 @@ enum SideMenuToolViewModel: Int, CaseIterable {
 
     var title: String {
         switch self {
-        case .twitterBlue: return "Twitter Blue"
+        case .twitterBlue: return "Twitter"
         case .professionalTools: return "Professional Tools"
         case .settingsAndSupport: return "Settings and support"
         }

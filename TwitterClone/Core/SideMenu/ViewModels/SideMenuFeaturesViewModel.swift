@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SideMenuFeatureViewModel: Int, CaseIterable {
+enum SideMenuFeaturesViewModel: Int, CaseIterable {
     case profile
     case topics
     case bookmarks
@@ -30,7 +30,7 @@ enum SideMenuFeatureViewModel: Int, CaseIterable {
         case .topics: return "quote.bubble"
         case .bookmarks: return "bookmark"
         case .lists: return "list.bullet.rectangle.portrait"
-        case .twitterCircle: return "person.3"
+        case .twitterCircle: return "person.2.circle"
         }
     }
 }

@@ -10,21 +10,33 @@ import SwiftUI
 struct SideMenuFeaturesView: View {
     let following: Int
     let followers: Int
+    let image = TwitterBlueB()
     
     var body: some View {
         
         VStack(alignment: .leading){
             accountOverview
+            featuresView
             
-            ForEach(SideMenuFeatureViewModel.allCases, id: \.rawValue) { label in
-                HStack {
-                    
-                    Image(systemName: label.imageName)
-                        .frame(width: 40)
-                    Text(label.title)
+            Divider()
+                .padding(.horizontal, 10)
+                .padding(.vertical)
+
+            ForEach(SideMenuToolViewModel.allCases, id: \.rawValue){ tool in
+                DisclosureGroup {
+                    // content
+                } label: {
+                    HStack {
+                        Text(tool.title)
+                            .bold()
+                        if tool == .twitterBlue {
+                            TwitterBlueB()
+                        }
+                    }
                 }
-                .frame(height: 40)
             }
+            .buttonStyle(PlainButtonStyle())
+ 
         }
         .padding()
     }
@@ -64,6 +76,20 @@ extension SideMenuFeaturesView {
             Image(systemName: "person.badge.plus")
                 .font(.title2)
                 .offset(y: -32)
+        }
+    }
+    var featuresView: some View {
+        ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
+            HStack {
+                
+                Image(systemName: label.imageName)
+                    .frame(width: 28)
+                Text(label.title)
+                    .foregroundColor(.primary)
+            }
+            .bold()
+            
+            .frame(height: 40)
         }
     }
 }
