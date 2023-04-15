@@ -18,6 +18,7 @@ struct FeedView: View {
                 }
             }
             .navigationTitle("Feed")
+            .navigationBarTitleDisplayMode(.inline)
 
         }
     }
