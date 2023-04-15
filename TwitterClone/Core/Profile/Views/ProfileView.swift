@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var selectedFilter: TweetFilterViewModel = .tweets
+    @Environment(\.presentationMode) var mode
     @Namespace var animation // For animating blue bar in tweetFilter
     
     var body: some View {
@@ -40,7 +41,7 @@ extension ProfileView {
             // Back Arrow
             VStack {
                 Button {
-                    // action
+                    mode.wrappedValue.dismiss()
                 } label: {
                     BackArrow()
                         .offset(x: 2, y: 10)
@@ -59,7 +60,7 @@ extension ProfileView {
             }
         }
         .frame(height: 96)
-        
+        .navigationBarBackButtonHidden(true)
     }
     
     var editProfileButton: some View {
@@ -91,9 +92,7 @@ extension ProfileView {
                     .font(.title3).fontWeight(.semibold)
                     .padding(.top, 15)
                 // Verified
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.caption)
-                    .foregroundColor(.twitterBlue)
+                BlueCheck()
                     .offset(y: 8)
             }
             // @username

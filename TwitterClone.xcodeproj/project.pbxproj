@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA22853329EA1B2C005CB22A /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22853229EA1B2C005CB22A /* UserRowView.swift */; };
+		AA22853529EA1D3F005CB22A /* BlueCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22853429EA1D3F005CB22A /* BlueCheck.swift */; };
 		AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */; };
 		AAAFCC1029E849B800CCA835 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC0F29E849B800CCA835 /* ContentView.swift */; };
 		AAAFCC1229E849B900CCA835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAFCC1129E849B900CCA835 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA22853229EA1B2C005CB22A /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		AA22853429EA1D3F005CB22A /* BlueCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCheck.swift; sourceTree = "<group>"; };
 		AAAFCC0A29E849B800CCA835 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClone.swift; sourceTree = "<group>"; };
 		AAAFCC0F29E849B800CCA835 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +58,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA22852F29EA1B04005CB22A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAAFCC3929E85BA100CCA835 /* ExploreView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA22853029EA1B06005CB22A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA22853129EA1B1F005CB22A /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				AA22853429EA1D3F005CB22A /* BlueCheck.swift */,
+				AA22853229EA1B2C005CB22A /* UserRowView.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 		AAAFCC0129E849B800CCA835 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +161,7 @@
 		AAAFCC2729E84A7100CCA835 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA22853129EA1B1F005CB22A /* Users */,
 				AAAFCC2D29E84B4800CCA835 /* Tweets */,
 			);
 			path = Components;
@@ -198,7 +227,8 @@
 		AAAFCC3629E85B2D00CCA835 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				AAAFCC3929E85BA100CCA835 /* ExploreView.swift */,
+				AA22853029EA1B06005CB22A /* ViewModels */,
+				AA22852F29EA1B04005CB22A /* Views */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -306,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA22853329EA1B2C005CB22A /* UserRowView.swift in Sources */,
 				AAAFCC3E29E85BCF00CCA835 /* CommunitiesView.swift in Sources */,
 				AAAFCC1029E849B800CCA835 /* ContentView.swift in Sources */,
 				AAFA752529E8BD7D0025D59B /* ProfileView.swift in Sources */,
@@ -317,6 +348,7 @@
 				AAAFCC3A29E85BA100CCA835 /* ExploreView.swift in Sources */,
 				AAAFCC3329E857CC00CCA835 /* MainTabView.swift in Sources */,
 				AAFA752B29E9D7B50025D59B /* TweetFilterViewModel.swift in Sources */,
+				AA22853529EA1D3F005CB22A /* BlueCheck.swift in Sources */,
 				AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */,
 				AAAFCC3C29E85BBB00CCA835 /* NotificationsView.swift in Sources */,
 			);

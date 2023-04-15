@@ -14,7 +14,7 @@ struct TweetRowView: View {
             HStack(alignment: .top, spacing: 12) {
                 Circle()
                     .frame(width: 45)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.twitterBlue)
                 
                 // User info, tweet body
                 VStack(alignment: .leading, spacing: 4) {

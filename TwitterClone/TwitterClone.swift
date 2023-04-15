@@ -12,7 +12,7 @@ struct TwitterClone: App {
 
     var body: some Scene {
         WindowGroup {
-            ProfileView()
+            MainTabView()
         }
     }
 }
