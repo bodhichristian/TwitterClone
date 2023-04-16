@@ -62,6 +62,7 @@ struct MainTabView: View {
                         .environment(\.symbolVariants, .none)
 
                 }.tag(4)
+            
         }
     }
 }

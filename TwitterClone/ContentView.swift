@@ -11,8 +11,9 @@ import CoreData
 struct ContentView: View {
     
     var body: some View {
-        
-        Text("Hello, snickerdoodle!")
+        ZStack(alignment: .topLeading) {
+            MainTabView()
+        }
         
     }
 }

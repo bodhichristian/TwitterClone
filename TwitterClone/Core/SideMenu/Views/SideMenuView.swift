@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SideMenuFeaturesView: View {
+struct SideMenuView: View {
     let following: Int
     let followers: Int
-    let image = TwitterBlueB()
+    let image = TwitterBlueLogo()
     
     var body: some View {
         
@@ -21,22 +21,8 @@ struct SideMenuFeaturesView: View {
             Divider()
                 .padding(.horizontal, 10)
                 .padding(.vertical)
-
-            ForEach(SideMenuToolViewModel.allCases, id: \.rawValue){ tool in
-                DisclosureGroup {
-                    // content
-                } label: {
-                    HStack {
-                        Text(tool.title)
-                            .bold()
-                        if tool == .twitterBlue {
-                            TwitterBlueB()
-                        }
-                    }
-                }
-            }
-            .buttonStyle(PlainButtonStyle())
- 
+            
+            toolsView
         }
         .padding()
     }
@@ -45,11 +31,11 @@ struct SideMenuFeaturesView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuFeaturesView(following: 100, followers: 900)
+        SideMenuView(following: 100, followers: 900)
     }
 }
 
-extension SideMenuFeaturesView {
+extension SideMenuView {
     var accountOverview: some View {
         HStack {
             // Display name, username, user stats
@@ -91,5 +77,23 @@ extension SideMenuFeaturesView {
             
             .frame(height: 40)
         }
+    }
+    
+    var toolsView: some View {
+        ForEach(SideMenuToolsViewModel.allCases, id: \.rawValue){ tool in
+            DisclosureGroup {
+                // content
+            } label: {
+                HStack {
+                    Text(tool.title)
+                        .bold()
+                    if tool == .twitterBlue {
+                        TwitterBlueLogo()
+                    }
+                }
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+
     }
 }

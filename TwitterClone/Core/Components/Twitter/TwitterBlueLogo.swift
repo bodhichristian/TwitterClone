@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TwitterBlueB: View {
+struct TwitterBlueLogo: View {
     var body: some View {
         Image("twitterBlueB")
             .resizable()
@@ -20,6 +20,6 @@ struct TwitterBlueB: View {
 
 struct TwitterBlueB_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterBlueB()
+        TwitterBlueLogo()
     }
 }

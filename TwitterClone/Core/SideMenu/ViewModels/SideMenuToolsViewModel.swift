@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum SideMenuToolViewModel: Int, CaseIterable {
+enum SideMenuToolsViewModel: Int, CaseIterable {
     case twitterBlue
     case professionalTools
     case settingsAndSupport
