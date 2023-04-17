@@ -10,35 +10,49 @@ import SwiftUI
 struct FeedView: View {
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
+    @State private var showingSideMenu = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                header
-                // Tweets
-                ScrollView {
-                    LazyVStack {
-                        ForEach(0..<20, id: \.self) { _ in
-                            TweetRowView()
+            ZStack(alignment: .topLeading) {
+                VStack {
+                    header
+                    // Tweets
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(0..<20, id: \.self) { _ in
+                                TweetRowView()
+                            }
                         }
                     }
                 }
+                SideMenuView()
+                //.frame(width: 300)
+                    .offset(x: showingSideMenu ? 0 : -400)
             }
             .toolbar {
-                // Profile picture
+                // Profile picture, side menu reveal
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Circle()
-                        .frame(width: 32)
+                    Button {
+                        withAnimation {
+                            showingSideMenu.toggle()
+                        }
+                    } label: {
+                        Circle()
+                            .frame(width: 32)
+                            .padding(.leading, -4)
+                    }
+                    .tint(.twitterBlue)
                 }
                 // Twitter logo
                 ToolbarItem(placement: .principal) {
                     TwitterLogo()
                         .padding(8)
+                        .opacity(showingSideMenu ? 0 : 1)
                 }
             }
             // Maintains header shape
             .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
 }

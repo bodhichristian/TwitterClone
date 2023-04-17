@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SideMenuView: View {
-    let following: Int
-    let followers: Int
+    @Environment(\.colorScheme) var colorScheme
+    
     let image = TwitterBlueLogo()
     
     var body: some View {
-        
         VStack(alignment: .leading){
             accountOverview
             featuresView
@@ -23,15 +22,25 @@ struct SideMenuView: View {
                 .padding(.vertical)
             
             toolsView
+            Spacer()
+            // Theme
+            HStack {
+                Image(systemName: colorScheme == .dark ? "moon.stars" : "sun.min")
+                    .font(.title2)
+                Spacer()
+            }
         }
-        .padding()
+        .offset(y: -38)
+        .padding(.horizontal)
+        .background(colorScheme == .dark ? .black : .white)
+        .frame(width: 300)
     }
 }
 
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView(following: 100, followers: 900)
+        SideMenuView()
     }
 }
 
@@ -40,9 +49,10 @@ extension SideMenuView {
         HStack {
             // Display name, username, user stats
             VStack(alignment: .leading) {
-                // Profile picture
+                // Profile picture placeholder for matching position between this view and FeedView
                 Circle()
                     .frame(width: 32)
+                    .foregroundColor(.clear)
                 // Display name and blue check
                 HStack {
                     Text("Bruce Wayne")
@@ -54,7 +64,7 @@ extension SideMenuView {
                     .font(.caption)
                     .foregroundColor(.secondary)
                 // User stats
-                FollowingFollowersView(following: following, followers: followers)
+                FollowingFollowersView(following: 100, followers: 900)
                     .padding(.vertical, 1)
             }
             
