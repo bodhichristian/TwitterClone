@@ -29,11 +29,12 @@ struct SideMenuView: View {
                     .font(.title2)
                 Spacer()
             }
+            .offset(y: 15)
         }
         .offset(y: -38)
         .padding(.horizontal)
         .background(colorScheme == .dark ? .black : .white)
-        .frame(width: 300)
+        .frame(width: 320)
     }
 }
 
@@ -59,6 +60,7 @@ extension SideMenuView {
                         .font(.headline)
                     BlueCheck()
                 }
+                .padding(.top)
                 // Username
                 Text("@batman")
                     .font(.caption)
@@ -73,19 +75,31 @@ extension SideMenuView {
                 .font(.title2)
                 .offset(y: -32)
         }
+        .padding(.bottom)
     }
     var featuresView: some View {
         ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
-            HStack {
+            NavigationLink {
+                if label == .profile {
+                    ProfileView()
+                }
+                else {
+                    Text(label.title)
+                }
+            } label: {
+                HStack {
+                    
+                    Image(systemName: label.imageName)
+                        .frame(width: 28)
+                    Text(label.title)
+                        .foregroundColor(.primary)
+                }
+                .fontWeight(.semibold)
                 
-                Image(systemName: label.imageName)
-                    .frame(width: 28)
-                Text(label.title)
-                    .foregroundColor(.primary)
+                .frame(height: 48)
             }
-            .bold()
+
             
-            .frame(height: 40)
         }
     }
     
@@ -96,7 +110,8 @@ extension SideMenuView {
             } label: {
                 HStack {
                     Text(tool.title)
-                        .bold()
+                        .font(.callout)
+                        .fontWeight(.semibold)
                     if tool == .twitterBlue {
                         TwitterBlueLogo()
                     }
