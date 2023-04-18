@@ -10,7 +10,8 @@ import SwiftUI
 struct FeedView: View {
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
-    @State private var showingSideMenu = false
+    @Binding var showingSideMenu: Bool
+    
     
     var body: some View {
         NavigationView {
@@ -37,8 +38,8 @@ struct FeedView: View {
                             }
                         }
                 }
-                
-                
+
+
                 SideMenuView()
                     .offset(x: showingSideMenu ? 0 : -400)
             }
@@ -71,7 +72,7 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(showingSideMenu: .constant(false))
     }
 }
 

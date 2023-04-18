@@ -29,9 +29,7 @@ struct SideMenuView: View {
                     .font(.title2)
                 Spacer()
             }
-            .offset(y: 15)
         }
-        .offset(y: -38)
         .padding(.horizontal)
         .background(colorScheme == .dark ? .black : .white)
         .frame(width: 320)
@@ -50,10 +48,16 @@ extension SideMenuView {
         HStack {
             // Display name, username, user stats
             VStack(alignment: .leading) {
-                // Profile picture placeholder for matching position between this view and FeedView
-                Circle()
-                    .frame(width: 32)
-                    .foregroundColor(.clear)
+                // Profile image/button
+                NavigationLink {
+                    ProfileView()
+                } label: {
+                    // Profile picture
+                    Circle()
+                        .frame(width: 32)
+                        .foregroundColor(.twitterBlue)
+                }
+
                 // Display name and blue check
                 HStack {
                     Text("Bruce Wayne")
@@ -98,6 +102,7 @@ extension SideMenuView {
                 
                 .frame(height: 48)
             }
+            .buttonStyle(PlainButtonStyle())
 
             
         }
