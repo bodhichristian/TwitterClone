@@ -84,11 +84,11 @@ extension SideMenuView {
     var featuresView: some View {
         ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
             NavigationLink {
-                if label == .profile {
-                    ProfileView()
-                }
-                else {
-                    Text(label.title)
+                switch label {
+                case .profile : ProfileView()
+                // Add a case for each SideMenuFeaturesViewModel cases
+                    
+                default: Text(label.title)
                 }
             } label: {
                 HStack {
@@ -104,7 +104,6 @@ extension SideMenuView {
             }
             .buttonStyle(PlainButtonStyle())
 
-            
         }
     }
     

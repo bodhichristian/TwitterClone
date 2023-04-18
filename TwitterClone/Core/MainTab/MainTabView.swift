@@ -75,12 +75,14 @@ struct MainTabView: View {
                         }
                 }
                 
-                
                 SideMenuView()
                     .offset(x: showingSideMenu ? 0 : -400)
-                
+            }
+            .onAppear {
+                showingSideMenu = false
             }
         }
+        
     }
 }
 struct MainTabView_Previews: PreviewProvider {
