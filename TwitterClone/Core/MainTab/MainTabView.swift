@@ -62,6 +62,23 @@ struct MainTabView: View {
                             selectedTab = 4
                         }
                 }
+                VStack {
+                    Spacer()
+                    HStack(alignment: .bottom) {
+                        Spacer()
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.twitterBlue)
+                                .frame(width: 56)
+                                .padding()
+                            Image(systemName: "plus")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                        }
+                        .offset(y: -48)
+
+                    }
+                }
                 
                 // Overlays FeedView when Side Menu is visible
                 // Tapping on black background pushes SideMenuView off screen
