@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     @State private var selectedTab = 0
     @State private var showingSideMenu = false
+    @State private var showingNewTweetView = false
     
     var body: some View {
         NavigationView{
@@ -62,23 +63,9 @@ struct MainTabView: View {
                             selectedTab = 4
                         }
                 }
-                VStack {
-                    Spacer()
-                    HStack(alignment: .bottom) {
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.twitterBlue)
-                                .frame(width: 56)
-                                .padding()
-                            Image(systemName: "plus")
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                        }
-                        .offset(y: -48)
+                
+                newTweetButton
 
-                    }
-                }
                 
                 // Overlays FeedView when Side Menu is visible
                 // Tapping on black background pushes SideMenuView off screen
@@ -105,5 +92,35 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
+    }
+}
+
+extension MainTabView {
+    var newTweetButton: some View {
+        VStack {
+            Spacer()
+            HStack(alignment: .bottom) {
+                Spacer()
+                Button {
+                    showingNewTweetView = true
+                }label:{
+                    ZStack {
+                        Circle()
+                            .foregroundColor(.twitterBlue)
+                            .frame(width: 56)
+                            .padding()
+                        Image(systemName: "plus")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(width: 56, height: 56)
+                    }
+                    .fullScreenCover(isPresented: $showingNewTweetView) {
+                        NewTweetView()
+                    }
+                    .offset(y: -48)
+                }
+                
+            }
+        }
     }
 }
