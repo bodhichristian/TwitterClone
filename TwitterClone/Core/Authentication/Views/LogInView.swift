@@ -10,52 +10,35 @@ import SwiftUI
 struct LogInView: View {
     @Environment (\.presentationMode) var presentationMode
     
-    let prompt = "To get started, first enter your phone, email, or @username"
+    let prompt = "To get started, enter your phone, email, or @username, followed by your password."
     let passwordResetURL = URL(string: "https://twitter.com/account/begin_password_reset")!
-    let loginTitleKey = "Phone, email, or @username"
+    let loginTitleKey = "Phone, email, or @username" // Placeholder text for loginCredential TextField
+    let passwordTitleKey = "Password" // Placeholder text for password TextField
     
-    @State private var loginCredential = ""
-    @State private var showingPasswordField = false
+    @State private var userID = ""
     @State private var password = ""
     
+    
+    var logInReady: Bool { // Returns true if userID and password have values
+        !(userID.isEmpty || password.isEmpty)
+    }
+    
     var body: some View {
-        NavigationView {
+        // Placed inside NavigationView
             VStack {
+                // To get started...
                 Text(prompt)
+                    .multilineTextAlignment(.leading)
                     .font(.title)
-                    .bold()
-                
-                TextField(loginTitleKey, text: $loginCredential)
-                
-                Divider()
-                    .padding(0)
-                Spacer()
-                
-                // Footer tools
-                HStack {
-                    Link("Forgot password?", destination: passwordResetURL)
-                    
-                    Spacer()
-                    
-                    Button {
-                        // 
-                    } label: {
-                        Text("Next")
-                            .font(.subheadline)
-                            .bold()
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(loginCredential.isEmpty ? .secondary : Color.twitterBlue)
-                            .foregroundColor(.white)
-                            .clipShape(Capsule())
-                    }
-                    .disabled(loginCredential.isEmpty)
-                
-                }
+                    .fontWeight(.semibold)
+                // UserID and password
+                credentialEntry
+                // Log in and Forgot Password?
+                logInButtons
             }
             .padding()
             .toolbar {
-                // Profile picture, side menu reveal
+                // Cancel Button
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
@@ -73,13 +56,58 @@ struct LogInView: View {
             }
             // Maintains header shape
             .navigationBarTitleDisplayMode(.inline)
-        }
-        
     }
 }
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView()
+    }
+}
+
+
+extension LogInView {
+    var credentialEntry: some View {
+        VStack{
+            // Phone, email, or @username
+            TextField(loginTitleKey, text: $userID)
+            Divider()
+                .padding(0)
+            
+            // Password
+            TextField(passwordTitleKey, text: $password)
+                .padding(.top, 10)
+            Divider()
+                .padding(0)
+        }
+    }
+    
+    var logInButtons: some View {
+        VStack {
+            Spacer()
+            // Log in button
+            Button {
+                //
+            } label: {
+                Text("Log in")
+                    .font(.subheadline)
+                    .bold()
+                    .frame(width: 300, height: 50)
+                    .background(logInReady ? Color.twitterBlue : .secondary)
+                    .foregroundColor(logInReady ? .white : .secondary)
+                    .clipShape(Capsule())
+            }
+            // Disabled if userID or password are empty
+            .disabled(!logInReady)
+            
+            // Forgot password?
+            Link(destination: passwordResetURL){
+                Text("Forgot password?")
+                .underline()
+                .bold()
+                .foregroundColor(.primary)
+                .padding()
+            }
+        }
     }
 }

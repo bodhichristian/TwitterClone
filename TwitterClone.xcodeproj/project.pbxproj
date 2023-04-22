@@ -20,7 +20,8 @@
 		AA841C1029F00DD600B09A56 /* NewTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C0F29F00DD600B09A56 /* NewTweetView.swift */; };
 		AA841C1229F00F8700B09A56 /* TweetTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1129F00F8700B09A56 /* TweetTextEditor.swift */; };
 		AA841C1829F0AF3400B09A56 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1729F0AF3400B09A56 /* LogInView.swift */; };
-		AA841C1C29F0AF5500B09A56 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1B29F0AF5500B09A56 /* SignUpView.swift */; };
+		AA841C1C29F0AF5500B09A56 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1B29F0AF5500B09A56 /* CreateAccountView.swift */; };
+		AA841C1E29F44A3600B09A56 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1D29F44A3600B09A56 /* CreateAccountViewModel.swift */; };
 		AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */; };
 		AAAFCC1029E849B800CCA835 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC0F29E849B800CCA835 /* ContentView.swift */; };
 		AAAFCC1229E849B900CCA835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAFCC1129E849B900CCA835 /* Assets.xcassets */; };
@@ -52,7 +53,8 @@
 		AA841C0F29F00DD600B09A56 /* NewTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetView.swift; sourceTree = "<group>"; };
 		AA841C1129F00F8700B09A56 /* TweetTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTextEditor.swift; sourceTree = "<group>"; };
 		AA841C1729F0AF3400B09A56 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
-		AA841C1B29F0AF5500B09A56 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		AA841C1B29F0AF5500B09A56 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		AA841C1D29F44A3600B09A56 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		AAAFCC0A29E849B800CCA835 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClone.swift; sourceTree = "<group>"; };
 		AAAFCC0F29E849B800CCA835 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				AA841C1729F0AF3400B09A56 /* LogInView.swift */,
-				AA841C1B29F0AF5500B09A56 /* SignUpView.swift */,
+				AA841C1B29F0AF5500B09A56 /* CreateAccountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +190,7 @@
 		AA841C1529F0AEDA00B09A56 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA841C1D29F44A3600B09A56 /* CreateAccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -468,7 +471,7 @@
 				AA22853D29EAC59F005CB22A /* SideMenuRowView.swift in Sources */,
 				AAFA752929E8C7FF0025D59B /* Color-twitterBlue.swift in Sources */,
 				AAAFCC2C29E84ADE00CCA835 /* FeedView.swift in Sources */,
-				AA841C1C29F0AF5500B09A56 /* SignUpView.swift in Sources */,
+				AA841C1C29F0AF5500B09A56 /* CreateAccountView.swift in Sources */,
 				AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */,
 				AA841C1229F00F8700B09A56 /* TweetTextEditor.swift in Sources */,
 				AAAFCC3A29E85BA100CCA835 /* ExploreView.swift in Sources */,
@@ -476,6 +479,7 @@
 				AAFA752B29E9D7B50025D59B /* TweetFilterViewModel.swift in Sources */,
 				AA841C1029F00DD600B09A56 /* NewTweetView.swift in Sources */,
 				AA22853529EA1D3F005CB22A /* BlueCheck.swift in Sources */,
+				AA841C1E29F44A3600B09A56 /* CreateAccountViewModel.swift in Sources */,
 				AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */,
 				AAAFCC3C29E85BBB00CCA835 /* NotificationsView.swift in Sources */,
 				AA22854A29EBA582005CB22A /* FeedType.swift in Sources */,
