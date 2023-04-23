@@ -45,7 +45,6 @@ struct CreateAccountView: View {
             
             createAccountButton
         }
-        .padding(.horizontal)
         .toolbar {
             // Cancel Button
             ToolbarItem(placement: .navigationBarLeading) {

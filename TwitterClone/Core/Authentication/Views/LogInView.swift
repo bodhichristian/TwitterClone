@@ -84,7 +84,6 @@ extension LogInView {
             Divider()
                 .padding(0)
         }
-        .padding(.horizontal)
     }
     
     var logInButtons: some View {

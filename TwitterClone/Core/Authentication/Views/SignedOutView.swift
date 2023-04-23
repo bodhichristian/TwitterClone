@@ -78,8 +78,16 @@ extension SignedOutView {
             
             Spacer()
             
-            AuthenticationOptionButton(title: "Continue with Apple", imageName: "appleLogo")
-            AuthenticationOptionButton(title: "Continue with Google", imageName: "googleLogo")
+            Button {
+                // Action
+            } label: {
+                AuthenticationOptionButton(title: "Continue with Apple", imageName: "appleLogo")
+            }
+            Button {
+                // Action
+            } label: {
+                AuthenticationOptionButton(title: "Continue with Google", imageName: "googleLogo")
+            }
             
             orDivider
             
