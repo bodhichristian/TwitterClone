@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct TwitterClone: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
             NavigationView{
                 //ContentView()
-                LogInView()
+                SignedOutView()
             }
         }
     }

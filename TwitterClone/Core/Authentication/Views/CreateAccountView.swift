@@ -45,6 +45,7 @@ struct CreateAccountView: View {
             
             createAccountButton
         }
+        .padding(.horizontal)
         .toolbar {
             // Cancel Button
             ToolbarItem(placement: .navigationBarLeading) {
@@ -64,10 +65,13 @@ struct CreateAccountView: View {
         }
         // Maintains header shape
         .navigationBarTitleDisplayMode(.inline)
+        // Hides default Navigation Back Button
+        .navigationBarBackButtonHidden()
+
     }
 }
 
-struct SignUpView_Previews: PreviewProvider {
+struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
         CreateAccountView()
     }
@@ -81,6 +85,7 @@ extension CreateAccountView {
                 // Name
                 HStack {
                     Image(systemName: "person")
+                        .foregroundColor(.twitterBlue)
                     TextField("Name", text: $name)
                 }
                 Divider()
@@ -88,6 +93,7 @@ extension CreateAccountView {
                 // Email
                 HStack {
                     Image(systemName: "envelope")
+                        .foregroundColor(.twitterBlue)
                     TextField("Email", text: $email)
                 }
                 Divider()
@@ -95,33 +101,40 @@ extension CreateAccountView {
                 // Phone Number
                 HStack {
                     Image(systemName: "phone")
+                        .foregroundColor(.twitterBlue)
                     TextField("Phone number", text: $phonenumber)
                 }
                 Divider()
+                    .padding(.bottom, 40)
             }
             
             Group {
                 // Desired username
                 HStack {
                     Image(systemName: "at")
+                        .foregroundColor(.twitterBlue)
+
                     TextField("Create a username", text: $username)
                 }
                 Divider()
                 // Password
                 HStack {
                     Image(systemName: "lock.shield")
-                    TextField("Password", text: $password)
+                        .foregroundColor(.twitterBlue)
+                    TextField("Create a password", text: $password)
                 }
                 Divider()
                 
                 // Password Validation
                 HStack {
                     Image(systemName: "lock.shield.fill")
+                        .foregroundColor(.twitterBlue)
                     TextField("Re-enter password", text: $passwordCheck)
                 }
                 Divider()
             }
         }
+        
         .padding()
     }
     

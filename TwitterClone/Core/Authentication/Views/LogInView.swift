@@ -25,17 +25,18 @@ struct LogInView: View {
     
     var body: some View {
         // Placed inside NavigationView
-            VStack {
-                // To get started...
-                Text(prompt)
-                    .multilineTextAlignment(.leading)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                // UserID and password
-                credentialEntry
-                // Log in and Forgot Password?
-                logInButtons
-            }
+                VStack {
+                    // To get started...
+                    Text(prompt)
+                        .multilineTextAlignment(.leading)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 20)
+                    // UserID and password
+                    credentialEntry
+                    // Log in and Forgot Password?
+                    logInButtons
+                }
             .padding()
             .toolbar {
                 // Cancel Button
@@ -56,6 +57,9 @@ struct LogInView: View {
             }
             // Maintains header shape
             .navigationBarTitleDisplayMode(.inline)
+            // Hides default Navigation Back Button
+            .navigationBarBackButtonHidden()
+
     }
 }
 
@@ -80,6 +84,7 @@ extension LogInView {
             Divider()
                 .padding(0)
         }
+        .padding(.horizontal)
     }
     
     var logInButtons: some View {
