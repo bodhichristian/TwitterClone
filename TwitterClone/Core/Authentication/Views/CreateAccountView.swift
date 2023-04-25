@@ -87,6 +87,7 @@ extension CreateAccountView {
                     Image(systemName: "person")
                         .foregroundColor(.twitterBlue)
                     TextField("Name", text: $name)
+                        .textInputAutocapitalization(.never)
                 }
                 Divider()
                 
@@ -95,6 +96,7 @@ extension CreateAccountView {
                     Image(systemName: "envelope")
                         .foregroundColor(.twitterBlue)
                     TextField("Email", text: $email)
+                        .textInputAutocapitalization(.never)
                 }
                 Divider()
                 
@@ -115,6 +117,7 @@ extension CreateAccountView {
                         .foregroundColor(.twitterBlue)
 
                     TextField("Create a username", text: $username)
+                        .textInputAutocapitalization(.never)
                 }
                 Divider()
                 // Password

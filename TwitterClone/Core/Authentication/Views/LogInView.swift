@@ -75,6 +75,7 @@ extension LogInView {
         VStack{
             // Phone, email, or @username
             TextField(loginTitleKey, text: $userID)
+                .textInputAutocapitalization(.never)
             Divider()
                 .padding(0)
             
