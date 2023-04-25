@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var selectedFilter: TweetFilterViewModel = .tweets
     @Environment(\.presentationMode) var mode
+
+    @State private var selectedFilter: TweetFilterViewModel = .tweets
+    @State private var showingEditProfilePhotoView = false
     @Namespace var animation // For animating blue bar in tweetFilter
     
     var body: some View {
@@ -21,6 +23,9 @@ struct ProfileView: View {
             tweetsView
             
             Spacer()
+        }
+        .sheet(isPresented: $showingEditProfilePhotoView) {
+            EditProfilePhotoView()
         }
     }
 }
@@ -55,6 +60,9 @@ extension ProfileView {
                         .stroke(style: StrokeStyle(lineWidth: 3))
                         .foregroundColor(.white)
                         .frame(width: 72)
+                }
+                .onTapGesture {
+                    showingEditProfilePhotoView = true
                 }
                 .offset(x: 16, y: 44)
             }
