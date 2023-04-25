@@ -6,19 +6,27 @@
 //
 
 import SwiftUI
-import CoreData
+import Firebase
 
 struct ContentView: View {
-
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
-            ZStack(alignment: .topLeading) {
-                MainTabView()
-            }
+        // If no user is logged in
+        if viewModel.userSession == nil {
+            // Show Log in/Sign up options
+            SignedOutView() 
+        } else {
+            // Otherwise, present MainTabView
+            MainTabView()
+        }
+        
     }
 }
-    
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
-        }
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(AuthViewModel())
     }
+}

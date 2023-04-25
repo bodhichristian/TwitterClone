@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CreateAccountView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthViewModel
     
     @State private var name = ""
     @State private var email = ""
-    @State private var phonenumber = ""
+    @State private var phoneNumber = ""
     @State private var username = ""
     @State private var password = ""
     @State private var passwordCheck = ""
@@ -23,7 +24,7 @@ struct CreateAccountView: View {
         !(
             name.isEmpty ||
             email.isEmpty ||
-            phonenumber.isEmpty ||
+            phoneNumber.isEmpty ||
             username.isEmpty ||
             password.isEmpty ||
             passwordCheck.isEmpty ||
@@ -101,7 +102,7 @@ extension CreateAccountView {
                 HStack {
                     Image(systemName: "phone")
                         .foregroundColor(.twitterBlue)
-                    TextField("Phone number", text: $phonenumber)
+                    TextField("Phone number", text: $phoneNumber)
                 }
                 Divider()
                     .padding(.bottom, 40)
@@ -142,7 +143,7 @@ extension CreateAccountView {
             Spacer()
             
             Button {
-                //
+                viewModel.register(name: name, email: email, phoneNumber: phoneNumber, username: username, password: password)
             } label: {
                 Text("Create account")
                     .font(.subheadline)

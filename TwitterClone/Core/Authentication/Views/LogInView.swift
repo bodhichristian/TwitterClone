@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LogInView: View {
     @Environment (\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthViewModel
     
     let prompt = "To get started, enter your phone, email, or @username, followed by your password."
     let passwordResetURL = URL(string: "https://twitter.com/account/begin_password_reset")!
@@ -17,7 +18,6 @@ struct LogInView: View {
     
     @State private var userID = ""
     @State private var password = ""
-    
     
     var logInReady: Bool { // Returns true if userID and password have values
         !(userID.isEmpty || password.isEmpty)
@@ -91,7 +91,7 @@ extension LogInView {
             Spacer()
             // Log in button
             Button {
-                //
+                viewModel.login(userID: userID, password: password)
             } label: {
                 Text("Log in")
                     .font(.subheadline)
