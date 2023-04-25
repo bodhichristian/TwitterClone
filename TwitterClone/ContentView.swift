@@ -18,7 +18,9 @@ struct ContentView: View {
             SignedOutView() 
         } else {
             // Otherwise, present MainTabView
-            MainTabView()
+            ZStack(alignment: .topLeading){
+                MainTabView()
+            }
         }
         
     }

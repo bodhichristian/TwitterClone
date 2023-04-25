@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var viewModel: AuthViewModel
     
     let image = TwitterBlueLogo()
     
@@ -110,7 +111,21 @@ extension SideMenuView {
     var toolsView: some View {
         ForEach(SideMenuToolsViewModel.allCases, id: \.rawValue){ tool in
             DisclosureGroup {
-                // content
+                if tool == .settingsAndSupport {
+                    // Log Out Button
+                    Button {
+                        viewModel.logOut()
+                    } label: {
+                        HStack {
+                            Label("Log Out", systemImage: "door.right.hand.open")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.red)
+                                .padding(.top)
+                            Spacer()
+                        }
+                    }
+                }
             } label: {
                 HStack {
                     Text(tool.title)

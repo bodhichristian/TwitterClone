@@ -11,9 +11,9 @@ struct LogInView: View {
     @Environment (\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     
-    let prompt = "To get started, enter your phone, email, or @username, followed by your password."
+    let prompt = "To get started, enter your email, followed by your password."
     let passwordResetURL = URL(string: "https://twitter.com/account/begin_password_reset")!
-    let loginTitleKey = "Phone, email, or @username" // Placeholder text for loginCredential TextField
+    let loginTitleKey = "Email" // Placeholder text for loginCredential TextField
     let passwordTitleKey = "Password" // Placeholder text for password TextField
     
     @State private var userID = ""
@@ -25,7 +25,7 @@ struct LogInView: View {
     
     var body: some View {
         // Placed inside NavigationView
-                VStack {
+        VStack(alignment: .leading) {
                     // To get started...
                     Text(prompt)
                         .multilineTextAlignment(.leading)
@@ -79,7 +79,7 @@ extension LogInView {
                 .padding(0)
             
             // Password
-            TextField(passwordTitleKey, text: $password)
+            SecureField(passwordTitleKey, text: $password)
                 .padding(.top, 10)
             Divider()
                 .padding(0)
@@ -87,31 +87,37 @@ extension LogInView {
     }
     
     var logInButtons: some View {
-        VStack {
+        HStack{
             Spacer()
-            // Log in button
-            Button {
-                viewModel.login(userID: userID, password: password)
-            } label: {
-                Text("Log in")
-                    .font(.subheadline)
-                    .bold()
-                    .frame(width: 300, height: 50)
-                    .background(logInReady ? Color.twitterBlue : .secondary)
-                    .foregroundColor(logInReady ? .white : .secondary)
-                    .clipShape(Capsule())
-            }
-            // Disabled if userID or password are empty
-            .disabled(!logInReady)
             
-            // Forgot password?
-            Link(destination: passwordResetURL){
-                Text("Forgot password?")
-                .underline()
-                .bold()
-                .foregroundColor(.primary)
-                .padding()
+            VStack {
+                Spacer()
+                // Log in button
+                Button {
+                    viewModel.logIn(email: userID, password: password)
+                } label: {
+                    Text("Log in")
+                        .font(.subheadline)
+                        .bold()
+                        .frame(width: 300, height: 50)
+                        .background(logInReady ? Color.twitterBlue : .secondary)
+                        .foregroundColor(logInReady ? .white : .secondary)
+                        .clipShape(Capsule())
+                }
+                // Disabled if userID or password are empty
+                .disabled(!logInReady)
+                
+                // Forgot password?
+                Link(destination: passwordResetURL){
+                    Text("Forgot password?")
+                    .underline()
+                    .bold()
+                    .foregroundColor(.primary)
+                    .padding()
+                }
             }
+            
+            Spacer()
         }
     }
 }

@@ -121,7 +121,7 @@ extension CreateAccountView {
                 HStack {
                     Image(systemName: "lock.shield")
                         .foregroundColor(.twitterBlue)
-                    TextField("Create a password", text: $password)
+                    SecureField("Create a password", text: $password)
                 }
                 Divider()
                 
@@ -129,7 +129,7 @@ extension CreateAccountView {
                 HStack {
                     Image(systemName: "lock.shield.fill")
                         .foregroundColor(.twitterBlue)
-                    TextField("Re-enter password", text: $passwordCheck)
+                    SecureField("Re-enter password", text: $passwordCheck)
                 }
                 Divider()
             }
