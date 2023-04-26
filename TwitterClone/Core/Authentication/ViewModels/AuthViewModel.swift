@@ -7,10 +7,12 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var userAuthenticated = false
+    
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -62,6 +64,24 @@ class AuthViewModel: ObservableObject {
         userSession = nil
         // Ends user session on server
         try? Auth.auth().signOut()
+    }
+    
+    func uploadProfilePhoto(_ image: UIImage) {
+        // Check that a user is signed in
+        guard let uid = userSession?.uid else { return }
+        
+        ImageUploader.uploadImage(image: image) { profilePhotoUrl in
+            // Once image is uploaded, update the user's profilePhotoUrl field in Firestore
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["profilePhotoUrl": profilePhotoUrl]) { error in
+                    // Handle error
+                    if let error = error {
+                        print("Error updating user profile photo: \(error.localizedDescription)")
+                        return
+                    }
+                }
+        }
     }
 }
 
