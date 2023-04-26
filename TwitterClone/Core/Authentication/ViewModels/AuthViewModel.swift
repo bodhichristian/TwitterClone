@@ -13,9 +13,11 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var userAuthenticated = false
     
+    private let service = UserService()
     
     init() {
         self.userSession = Auth.auth().currentUser
+        self.fetchUser()
     }
     
     func logIn(email: String, password: String) {
@@ -82,6 +84,12 @@ class AuthViewModel: ObservableObject {
                     }
                 }
         }
+    }
+    
+    func fetchUser() {
+        guard let uid = self.userSession?.uid else { return }
+        
+        service.fetchUser(withUid: uid)
     }
 }
 
