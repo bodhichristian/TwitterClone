@@ -114,10 +114,10 @@ extension MainTabView {
                             .foregroundColor(.white)
                             .frame(width: 56, height: 56)
                     }
+                    .padding(.bottom, 48)
                     .fullScreenCover(isPresented: $showingNewTweetView) {
                         NewTweetView()
                     }
-                    .offset(y: -48)
                 }
                 
             }

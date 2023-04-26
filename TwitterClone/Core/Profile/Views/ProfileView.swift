@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject var viewModel: AuthViewModel
 
     @State private var selectedFilter: TweetFilterViewModel = .tweets
     @State private var showingEditProfilePhotoView = false
@@ -34,6 +35,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(AuthViewModel())
     }
 }
 
@@ -96,7 +98,7 @@ extension ProfileView {
             // ID Badge
             HStack {
                 // Display Name
-                Text("The Riddler")
+                Text(viewModel.currentUser!.name)
                     .font(.title3).fontWeight(.semibold)
                     .padding(.top, 15)
                 // Verified
@@ -104,7 +106,7 @@ extension ProfileView {
                     .offset(y: 8)
             }
             // @username
-            Text("@enygma")
+            Text("@\(viewModel.currentUser!.username)")
                 .font(.caption)
                 .foregroundColor(.secondary)
             // Bio

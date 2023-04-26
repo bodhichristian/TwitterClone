@@ -60,16 +60,20 @@ extension SideMenuView {
                 }
 
                 // Display name and blue check
-                HStack {
-                    Text("Bruce Wayne")
-                        .font(.headline)
-                    BlueCheck()
+                if let currentUser = viewModel.currentUser {
+                    HStack {
+                        Text(currentUser.name)
+                            .font(.headline)
+                        BlueCheck()
+                    }
+                    .padding(.top)
+                    // Username
+                    Text("@\(currentUser.username)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
-                .padding(.top)
-                // Username
-                Text("@batman")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                
+                
                 // User stats
                 FollowingFollowersView(following: 100, followers: 900)
                     .padding(.vertical, 1)
