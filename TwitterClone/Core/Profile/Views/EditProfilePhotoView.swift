@@ -43,7 +43,6 @@ struct EditProfilePhotoView: View {
                             Text("Edit")
                                 .font(.headline)
                                 .foregroundColor(.primary)
-                                .padding(.leading, 30)
                         }
                         Spacer()
                     }
