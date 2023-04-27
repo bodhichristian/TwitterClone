@@ -110,7 +110,7 @@ extension ProfileView {
             // ID Badge
             HStack {
                 // Display Name
-                Text(viewModel.currentUser!.name)
+                Text(viewModel.currentUser?.name ?? "")
                     .font(.title3).fontWeight(.semibold)
                     .padding(.top, 15)
                 // Verified
@@ -118,7 +118,7 @@ extension ProfileView {
                     .offset(y: 8)
             }
             // @username
-            Text("@\(viewModel.currentUser!.username)")
+            Text("@\(viewModel.currentUser?.username ?? "")")
                 .font(.caption)
                 .foregroundColor(.secondary)
             // Bio
