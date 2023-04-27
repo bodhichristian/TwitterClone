@@ -32,6 +32,7 @@
 		AA841C1229F00F8700B09A56 /* TweetTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1129F00F8700B09A56 /* TweetTextEditor.swift */; };
 		AA841C1829F0AF3400B09A56 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1729F0AF3400B09A56 /* LogInView.swift */; };
 		AA841C1C29F0AF5500B09A56 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1B29F0AF5500B09A56 /* CreateAccountView.swift */; };
+		AA9EACCC29FAA952003F21E1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AA9EACCB29FAA952003F21E1 /* Kingfisher */; };
 		AAA11C5329F95A9C00DD0837 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA11C5229F95A9C00DD0837 /* UserService.swift */; };
 		AAA11C5529F95C5D00DD0837 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA11C5429F95C5D00DD0837 /* User.swift */; };
 		AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */; };
@@ -102,6 +103,7 @@
 				AA2C74C029F5AE710013A986 /* FirebaseStorage in Frameworks */,
 				AA2C74BC29F5AE710013A986 /* FirebaseFirestore in Frameworks */,
 				AA2C74BE29F5AE710013A986 /* FirebaseFirestoreSwift in Frameworks */,
+				AA9EACCC29FAA952003F21E1 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +456,7 @@
 				AA2C74BB29F5AE710013A986 /* FirebaseFirestore */,
 				AA2C74BD29F5AE710013A986 /* FirebaseFirestoreSwift */,
 				AA2C74BF29F5AE710013A986 /* FirebaseStorage */,
+				AA9EACCB29FAA952003F21E1 /* Kingfisher */,
 			);
 			productName = Versa;
 			productReference = AAAFCC0A29E849B800CCA835 /* TwitterClone.app */;
@@ -485,6 +488,7 @@
 			mainGroup = AAAFCC0129E849B800CCA835;
 			packageReferences = (
 				AA2C74B829F5AE710013A986 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AA9EACCA29FAA952003F21E1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = AAAFCC0B29E849B800CCA835 /* Products */;
 			projectDirPath = "";
@@ -758,6 +762,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		AA9EACCA29FAA952003F21E1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -780,6 +792,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA2C74B829F5AE710013A986 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		AA9EACCB29FAA952003F21E1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9EACCA29FAA952003F21E1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

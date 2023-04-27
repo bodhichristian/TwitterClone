@@ -14,6 +14,6 @@ struct User: Identifiable, Decodable {
     let email: String
     let name: String
     let phoneNumber: String
-    let profileImageUrl: String?
+    let profilePhotoUrl: String?
 }
 

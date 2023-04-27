@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FeedView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
     @Binding var showingSideMenu: Bool
+    
     
     
     var body: some View {
@@ -51,11 +55,21 @@ struct FeedView: View {
                             showingSideMenu.toggle()
                         }
                     } label: {
-                        Circle()
-                            .frame(width: 32)
-                            .padding(.leading, -4)
+                    if let profilePhoto = viewModel.currentUser?.profilePhotoUrl {
+                            KFImage(URL(string: profilePhoto))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 32, height: 32)
+                                .clipShape(Circle())
+                                .padding(.bottom, 5)
+                                
+                        } else {
+                            Circle()
+                                .frame(width: 32)
+                                .foregroundColor(.twitterBlue)
+                                .padding(.leading, -4)
+                        }
                     }
-                    .tint(.twitterBlue)
                 }
                 // Twitter logo
                 ToolbarItem(placement: .principal) {

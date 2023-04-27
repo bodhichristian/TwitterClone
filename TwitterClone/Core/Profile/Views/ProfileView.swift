@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var mode
@@ -14,6 +15,7 @@ struct ProfileView: View {
     @State private var selectedFilter: TweetFilterViewModel = .tweets
     @State private var showingEditProfilePhotoView = false
     @Namespace var animation // For animating blue bar in tweetFilter
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -56,8 +58,18 @@ extension ProfileView {
                 
                 // Profile Picture
                 ZStack {
-                    Circle()
-                        .foregroundColor(.black)
+                    if let profilePhoto = viewModel.currentUser?.profilePhotoUrl {
+                        KFImage(URL(string: profilePhoto))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 69)
+                            .clipShape(Circle())
+                            
+                    } else {
+                        Circle()
+                            .foregroundColor(.black)
+                    }
+
                     Circle()
                         .stroke(style: StrokeStyle(lineWidth: 3))
                         .foregroundColor(.white)

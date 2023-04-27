@@ -85,6 +85,7 @@ class AuthViewModel: ObservableObject {
                         return
                     }
                 }
+            self.fetchUser()
         }
     }
     

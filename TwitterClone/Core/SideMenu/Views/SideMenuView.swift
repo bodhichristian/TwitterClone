@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SideMenuView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -54,9 +55,21 @@ extension SideMenuView {
                     ProfileView()
                 } label: {
                     // Profile picture
-                    Circle()
-                        .frame(width: 32)
-                        .foregroundColor(.twitterBlue)
+                    if viewModel.currentUser?.profilePhotoUrl == nil {
+                        Circle()
+                            .frame(width: 32)
+                            .foregroundColor(.twitterBlue)
+                    } else {
+                        if let profilePhoto = viewModel.currentUser?.profilePhotoUrl {
+                            KFImage(URL(string: profilePhoto))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 32, height: 32)
+                                .clipShape(Circle())
+                                .padding(.bottom, 5)
+                                
+                        }
+                    }
                 }
 
                 // Display name and blue check
@@ -66,7 +79,7 @@ extension SideMenuView {
                             .font(.headline)
                         BlueCheck()
                     }
-                    .padding(.top)
+                    //.padding(.top)
                     // Username
                     Text("@\(currentUser.username)")
                         .font(.caption)
