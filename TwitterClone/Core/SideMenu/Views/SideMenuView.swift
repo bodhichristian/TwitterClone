@@ -31,6 +31,7 @@ struct SideMenuView: View {
                     .font(.title2)
                 Spacer()
             }
+            .padding(.bottom, 10)
         }
         .padding(.horizontal)
         .background(colorScheme == .dark ? .black : .white)
