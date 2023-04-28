@@ -31,6 +31,7 @@ class AuthViewModel: ObservableObject {
             
             guard let user = result?.user else { return }
             self.userSession = user
+            self.fetchUser()
             print("DEBUG: Did log user in")
         }
     }
@@ -60,14 +61,18 @@ class AuthViewModel: ObservableObject {
                 .setData(data) { _ in
                     self.userAuthenticated = true
                 }
+            
+            self.fetchUser()
         }
-    }
+}
     
     func logOut() {
         // Ends user session locally
         userSession = nil
+        currentUser = nil
         // Ends user session on server
         try? Auth.auth().signOut()
+        print("Signed out")
     }
     
     func uploadProfilePhoto(_ image: UIImage) {

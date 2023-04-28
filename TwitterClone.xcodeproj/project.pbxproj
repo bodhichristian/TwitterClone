@@ -46,6 +46,7 @@
 		AAAFCC3C29E85BBB00CCA835 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC3B29E85BBB00CCA835 /* NotificationsView.swift */; };
 		AAAFCC3E29E85BCF00CCA835 /* CommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC3D29E85BCF00CCA835 /* CommunitiesView.swift */; };
 		AAAFCC4029E85BE000CCA835 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC3F29E85BE000CCA835 /* MessagesView.swift */; };
+		AADE054D29FC6A6B005998C6 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE054C29FC6A6B005998C6 /* ExploreViewModel.swift */; };
 		AAFA752529E8BD7D0025D59B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752429E8BD7D0025D59B /* ProfileView.swift */; };
 		AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752629E8BF1E0025D59B /* BackArrow.swift */; };
 		AAFA752929E8C7FF0025D59B /* Color-twitterBlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */; };
@@ -88,6 +89,7 @@
 		AAAFCC3B29E85BBB00CCA835 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		AAAFCC3D29E85BCF00CCA835 /* CommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesView.swift; sourceTree = "<group>"; };
 		AAAFCC3F29E85BE000CCA835 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		AADE054C29FC6A6B005998C6 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		AAFA752429E8BD7D0025D59B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AAFA752629E8BF1E0025D59B /* BackArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackArrow.swift; sourceTree = "<group>"; };
 		AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-twitterBlue.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		AA22853029EA1B06005CB22A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AADE054C29FC6A6B005998C6 /* ExploreViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				AAAFCC0E29E849B800CCA835 /* TwitterClone.swift in Sources */,
 				AA841C1229F00F8700B09A56 /* TweetTextEditor.swift in Sources */,
 				AAAFCC3A29E85BA100CCA835 /* ExploreView.swift in Sources */,
+				AADE054D29FC6A6B005998C6 /* ExploreViewModel.swift in Sources */,
 				AAAFCC3329E857CC00CCA835 /* MainTabView.swift in Sources */,
 				AA2C74C329F5B2820013A986 /* SignedOutView.swift in Sources */,
 				AA05EA0E29F805CE00F736CF /* EditProfilePhotoView.swift in Sources */,

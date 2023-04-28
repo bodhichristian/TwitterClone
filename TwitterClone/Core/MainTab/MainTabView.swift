@@ -65,7 +65,7 @@ struct MainTabView: View {
                 }
                 
                 newTweetButton
-                    .offset(x: showingSideMenu ? 100 : 0)
+                    .offset(x: showingSideMenu ? 100 : 0, y: -48)
             }
         }
     }
@@ -93,9 +93,8 @@ extension MainTabView {
                         Image(systemName: "plus")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .frame(width: 56, height: 56)
+                            //.frame(width: 56, height: 56)
                     }
-                    .padding(.bottom, 48)
                     .fullScreenCover(isPresented: $showingNewTweetView) {
                         NewTweetView()
                     }

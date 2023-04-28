@@ -147,6 +147,7 @@ extension CreateAccountView {
             
             Button {
                 viewModel.register(name: name, email: email, phoneNumber: phoneNumber, username: username, password: password)
+                
             } label: {
                 Text("Create account")
                     .font(.subheadline)

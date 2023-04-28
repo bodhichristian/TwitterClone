@@ -6,22 +6,30 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct UserRowView: View {
+    let user: User
+    
     var body: some View {
         HStack(alignment: .top) {
             // Profile picture
-            Circle()
-                .frame(width: 45)
+            KFImage(URL(string: user.profilePhotoUrl ?? ""))
+                .resizable()
+                .scaledToFill()
+                .clipShape(Circle())
+                .frame(width: 45, height: 45)
                 .foregroundColor(.twitterBlue)
             // Display name, username
             VStack(alignment: .leading, spacing: 2) {
-                HStack{
-                    Text("The Riddler")
+                HStack(spacing: 0){
+                    Text(user.name)
                         .bold()
                     BlueCheck()
+                        .padding(.horizontal, 4)
+                       
                 }
-                Text("@enygma")
+                Text("@\(user.username)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     
@@ -44,6 +52,6 @@ struct UserRowView: View {
 
 struct UserRowView_Previews: PreviewProvider {
     static var previews: some View {
-        UserRowView()
+        UserRowView(user: User.example)
     }
 }
