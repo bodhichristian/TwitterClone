@@ -52,7 +52,7 @@ extension SideMenuView {
             VStack(alignment: .leading) {
                 // Profile image/button
                 NavigationLink {
-                    ProfileView()
+                    ProfileView(user: viewModel.currentUser ?? User.empty)
                 } label: {
                     // Profile picture
                     if viewModel.currentUser?.profilePhotoUrl == nil {
@@ -74,7 +74,7 @@ extension SideMenuView {
 
                 // Display name and blue check
                 if let currentUser = viewModel.currentUser {
-                    HStack {
+                    HStack(spacing: 4) {
                         Text(currentUser.name)
                             .font(.headline)
                         BlueCheck()
@@ -103,7 +103,7 @@ extension SideMenuView {
         ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
             NavigationLink {
                 switch label {
-                case .profile : ProfileView()
+                case .profile : ProfileView(user: viewModel.currentUser ?? User.empty)
                 // Add a case for each SideMenuFeaturesViewModel cases
                     
                 default: Text(label.title)

@@ -65,28 +65,9 @@ struct MainTabView: View {
                 }
                 
                 newTweetButton
-
-                
-                // Overlays FeedView when Side Menu is visible
-                // Tapping on black background pushes SideMenuView off screen
-                if showingSideMenu {
-                    Color.black.opacity(0.4)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation {
-                                showingSideMenu = false
-                            }
-                        }
-                }
-                
-                SideMenuView()
-                    .offset(x: showingSideMenu ? 0 : -400)
-            }
-            .onAppear {
-                showingSideMenu = false
+                    .offset(x: showingSideMenu ? 100 : 0)
             }
         }
-        
     }
 }
 struct MainTabView_Previews: PreviewProvider {

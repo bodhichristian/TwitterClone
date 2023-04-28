@@ -20,6 +20,7 @@ struct ContentView: View {
             // Otherwise, present MainTabView
             ZStack(alignment: .topLeading){
                 MainTabView()
+                    .environmentObject(viewModel)
             }
         }
         

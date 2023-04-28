@@ -10,10 +10,11 @@ import Kingfisher
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject var viewModel: AuthViewModel
-
+   // @EnvironmentObject var viewModel: AuthViewModel
+    let user: User
     @State private var selectedFilter: TweetFilterViewModel = .tweets
     @State private var showingEditProfilePhotoView = false
+    
     @Namespace var animation // For animating blue bar in tweetFilter
     
     
@@ -36,7 +37,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: User.example)
             .environmentObject(AuthViewModel())
     }
 }
@@ -58,7 +59,7 @@ extension ProfileView {
                 
                 // Profile Picture
                 ZStack {
-                    if let profilePhoto = viewModel.currentUser?.profilePhotoUrl {
+                    if let profilePhoto = user.profilePhotoUrl {
                         KFImage(URL(string: profilePhoto))
                             .resizable()
                             .scaledToFill()
@@ -81,7 +82,7 @@ extension ProfileView {
                 .offset(x: 16, y: 44)
             }
         }
-        .frame(height: 96)
+        .frame(height: 112)
         .navigationBarBackButtonHidden(true)
     }
     
@@ -108,9 +109,9 @@ extension ProfileView {
     var aboutView: some View {
         VStack(alignment: .leading, spacing: 2) {
             // ID Badge
-            HStack {
+            HStack(spacing: 4) {
                 // Display Name
-                Text(viewModel.currentUser?.name ?? "")
+                Text(user.name)
                     .font(.title3).fontWeight(.semibold)
                     .padding(.top, 15)
                 // Verified
@@ -118,13 +119,13 @@ extension ProfileView {
                     .offset(y: 8)
             }
             // @username
-            Text("@\(viewModel.currentUser?.username ?? "")")
+            Text("@\(user.username)")
                 .font(.caption)
                 .foregroundColor(.secondary)
             // Bio
             Text("For if knowledge is power, then a god am I! \nWas that over the top❓I can never tell.")
                 .font(.subheadline)
-                .padding(.top)
+                .padding(.top, 10)
                 .padding(.bottom, 6)
             
             // Details

@@ -46,7 +46,12 @@ struct FeedView: View {
 
                 SideMenuView()
                     .offset(x: showingSideMenu ? 0 : -400)
+                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
+                    .onDisappear {
+                        showingSideMenu = false
+                    }
             }
+            .toolbar(showingSideMenu ? .hidden : .automatic)
             .toolbar {
                 // Profile picture, side menu reveal
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -87,6 +92,7 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView(showingSideMenu: .constant(false))
+            .environmentObject(AuthViewModel())
     }
 }
 
