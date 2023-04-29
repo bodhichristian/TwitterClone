@@ -47,6 +47,8 @@
 		AAAFCC3E29E85BCF00CCA835 /* CommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC3D29E85BCF00CCA835 /* CommunitiesView.swift */; };
 		AAAFCC4029E85BE000CCA835 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFCC3F29E85BE000CCA835 /* MessagesView.swift */; };
 		AADE054D29FC6A6B005998C6 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE054C29FC6A6B005998C6 /* ExploreViewModel.swift */; };
+		AADE054F29FC77BC005998C6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE054E29FC77BC005998C6 /* SearchBar.swift */; };
+		AADE055129FC7FA9005998C6 /* ExploreSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE055029FC7FA9005998C6 /* ExploreSettingsView.swift */; };
 		AAFA752529E8BD7D0025D59B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752429E8BD7D0025D59B /* ProfileView.swift */; };
 		AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752629E8BF1E0025D59B /* BackArrow.swift */; };
 		AAFA752929E8C7FF0025D59B /* Color-twitterBlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */; };
@@ -90,6 +92,8 @@
 		AAAFCC3D29E85BCF00CCA835 /* CommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesView.swift; sourceTree = "<group>"; };
 		AAAFCC3F29E85BE000CCA835 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		AADE054C29FC6A6B005998C6 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		AADE054E29FC77BC005998C6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		AADE055029FC7FA9005998C6 /* ExploreSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSettingsView.swift; sourceTree = "<group>"; };
 		AAFA752429E8BD7D0025D59B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AAFA752629E8BF1E0025D59B /* BackArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackArrow.swift; sourceTree = "<group>"; };
 		AAFA752829E8C7FF0025D59B /* Color-twitterBlue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-twitterBlue.swift"; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				AAAFCC3929E85BA100CCA835 /* ExploreView.swift */,
+				AADE055029FC7FA9005998C6 /* ExploreSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				AA22854229EACAF6005CB22A /* Twitter */,
 				AA22853129EA1B1F005CB22A /* Users */,
 				AAAFCC2D29E84B4800CCA835 /* Tweets */,
+				AADE054E29FC77BC005998C6 /* SearchBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AADE054F29FC77BC005998C6 /* SearchBar.swift in Sources */,
 				AA22853329EA1B2C005CB22A /* UserRowView.swift in Sources */,
 				AAAFCC3E29E85BCF00CCA835 /* CommunitiesView.swift in Sources */,
 				AA22853B29EAC597005CB22A /* SideMenuView.swift in Sources */,
@@ -530,6 +537,7 @@
 				AA22854429EACB0F005CB22A /* TwitterBlueLogo.swift in Sources */,
 				AAAFCC4029E85BE000CCA835 /* MessagesView.swift in Sources */,
 				AA22854829EBA088005CB22A /* TwitterLogo.swift in Sources */,
+				AADE055129FC7FA9005998C6 /* ExploreSettingsView.swift in Sources */,
 				AAAFCC3029E84B7800CCA835 /* TweetRowView.swift in Sources */,
 				AA22854129EAC764005CB22A /* SideMenuToolsViewModel.swift in Sources */,
 				AA22854629EB1DD9005CB22A /* FollowingFollowersView.swift in Sources */,

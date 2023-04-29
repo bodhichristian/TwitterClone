@@ -23,17 +23,21 @@ struct MainTabView: View {
                         }
                         .toolbarBackground(.visible, for: .tabBar)
                         .onTapGesture {
+                            showingSideMenu = false
                             selectedTab = 0
+
                         }
                     
-                    ExploreView()
+                    ExploreView(showingSideMenu: $showingSideMenu)
                         .tabItem {
                             Image(systemName: "magnifyingglass")
                                 .environment(\.symbolVariants, .none)
                         }
                         .toolbarBackground(.visible, for: .tabBar)
                         .onTapGesture {
+                            showingSideMenu = false
                             selectedTab = 1
+
                         }
                     
                     CommunitiesView()
@@ -42,7 +46,9 @@ struct MainTabView: View {
                                 .environment(\.symbolVariants, .none)
                         }
                         .onTapGesture {
+                            showingSideMenu = false
                             selectedTab = 2
+
                         }
                     
                     NotificationsView()
@@ -51,7 +57,9 @@ struct MainTabView: View {
                                 .environment(\.symbolVariants, .none)
                         }
                         .onTapGesture {
+                            showingSideMenu = false
                             selectedTab = 3
+
                         }
                     
                     MessagesView()
@@ -60,13 +68,23 @@ struct MainTabView: View {
                                 .environment(\.symbolVariants, .none)
                         }
                         .onTapGesture {
+                            showingSideMenu = false
                             selectedTab = 4
+
                         }
                 }
+                
+                SideMenuView()
+                    .offset(x: showingSideMenu ? 0 : -400)
+                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
+                    .onDisappear {
+                        showingSideMenu = false
+                    }
                 
                 newTweetButton
                     .offset(x: showingSideMenu ? 100 : 0, y: -48)
             }
+
         }
     }
 }

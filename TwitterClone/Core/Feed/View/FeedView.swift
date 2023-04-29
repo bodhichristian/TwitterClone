@@ -14,9 +14,7 @@ struct FeedView: View {
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
     @Binding var showingSideMenu: Bool
-    
-    
-    
+
     var body: some View {
         NavigationView {
             ZStack(alignment: .topLeading) {
@@ -43,13 +41,13 @@ struct FeedView: View {
                         }
                 }
 
-
-                SideMenuView()
-                    .offset(x: showingSideMenu ? 0 : -400)
-                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
-                    .onDisappear {
-                        showingSideMenu = false
-                    }
+//
+//                SideMenuView()
+//                    .offset(x: showingSideMenu ? 0 : -400)
+//                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
+//                    .onDisappear {
+//                        showingSideMenu = false
+//                    }
             }
             .toolbar(showingSideMenu ? .hidden : .automatic)
             .toolbar {
