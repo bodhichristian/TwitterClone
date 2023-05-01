@@ -198,17 +198,10 @@
 		AA841C0A29F00DA000B09A56 /* NewTweet */ = {
 			isa = PBXGroup;
 			children = (
-				AA841C0B29F00DB800B09A56 /* ViewModels */,
+				AADE055229FFE1FE005998C6 /* ViewModels */,
 				AA841C0C29F00DBC00B09A56 /* Views */,
 			);
 			path = NewTweet;
-			sourceTree = "<group>";
-		};
-		AA841C0B29F00DB800B09A56 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		AA841C0C29F00DBC00B09A56 /* Views */ = {
@@ -425,6 +418,13 @@
 				AAAFCC3D29E85BCF00CCA835 /* CommunitiesView.swift */,
 			);
 			path = Communities;
+			sourceTree = "<group>";
+		};
+		AADE055229FFE1FE005998C6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		AAFA752129E8BD630025D59B /* Views */ = {
