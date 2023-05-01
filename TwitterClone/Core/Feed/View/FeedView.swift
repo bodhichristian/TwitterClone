@@ -49,7 +49,6 @@ struct FeedView: View {
 //                        showingSideMenu = false
 //                    }
             }
-            .toolbar(showingSideMenu ? .hidden : .automatic)
             .toolbar {
                 // Profile picture, side menu reveal
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -73,6 +72,8 @@ struct FeedView: View {
                                 .padding(.leading, -4)
                         }
                     }
+                    .opacity(showingSideMenu ? 0 : 1)
+
                 }
                 // Twitter logo
                 ToolbarItem(placement: .principal) {

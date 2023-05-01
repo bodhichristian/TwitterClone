@@ -21,11 +21,10 @@ struct MainTabView: View {
                             Image(systemName: selectedTab == 0 ? "house.fill" : "house")
                                 .environment(\.symbolVariants, .none)
                         }
+                        .tag(0)
                         .toolbarBackground(.visible, for: .tabBar)
                         .onTapGesture {
                             showingSideMenu = false
-                            selectedTab = 0
-
                         }
                     
                     ExploreView(showingSideMenu: $showingSideMenu)
@@ -33,21 +32,24 @@ struct MainTabView: View {
                             Image(systemName: "magnifyingglass")
                                 .environment(\.symbolVariants, .none)
                         }
+                        .tag(1)
                         .toolbarBackground(.visible, for: .tabBar)
                         .onTapGesture {
                             showingSideMenu = false
-                            selectedTab = 1
+//                            selectedTab = 1
 
                         }
+
                     
                     CommunitiesView()
                         .tabItem {
                             Image(systemName: selectedTab == 2 ? "person.2.fill" : "person.2")
                                 .environment(\.symbolVariants, .none)
                         }
+                        .tag(2)
                         .onTapGesture {
                             showingSideMenu = false
-                            selectedTab = 2
+//                            selectedTab = 2
 
                         }
                     
@@ -56,9 +58,10 @@ struct MainTabView: View {
                             Image(systemName: selectedTab == 3 ? "bell.fill" : "bell")
                                 .environment(\.symbolVariants, .none)
                         }
+                        .tag(3)
                         .onTapGesture {
                             showingSideMenu = false
-                            selectedTab = 3
+//                            selectedTab = 3
 
                         }
                     
@@ -67,9 +70,10 @@ struct MainTabView: View {
                             Image(systemName: selectedTab == 4 ? "envelope.fill" : "envelope")
                                 .environment(\.symbolVariants, .none)
                         }
+                        .tag(4)
                         .onTapGesture {
                             showingSideMenu = false
-                            selectedTab = 4
+//                            selectedTab = 4
 
                         }
                 }
