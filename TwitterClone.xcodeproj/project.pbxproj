@@ -27,6 +27,8 @@
 		AA2C74C029F5AE710013A986 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AA2C74BF29F5AE710013A986 /* FirebaseStorage */; };
 		AA2C74C329F5B2820013A986 /* SignedOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C74C229F5B2820013A986 /* SignedOutView.swift */; };
 		AA2C74C629F5B7240013A986 /* AuthenticationOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C74C529F5B7240013A986 /* AuthenticationOptionButton.swift */; };
+		AA5FA9F82A0031CD00D894A3 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FA9F72A0031CD00D894A3 /* TweetService.swift */; };
+		AA5FA9FA2A00334900D894A3 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FA9F92A00334900D894A3 /* UploadTweetViewModel.swift */; };
 		AA65E9D529F8CBC500052F5F /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65E9D429F8CBC500052F5F /* ImageUploader.swift */; };
 		AA841C1029F00DD600B09A56 /* NewTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C0F29F00DD600B09A56 /* NewTweetView.swift */; };
 		AA841C1229F00F8700B09A56 /* TweetTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA841C1129F00F8700B09A56 /* TweetTextEditor.swift */; };
@@ -72,6 +74,8 @@
 		AA2C74B629F5ADE90013A986 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA2C74C229F5B2820013A986 /* SignedOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOutView.swift; sourceTree = "<group>"; };
 		AA2C74C529F5B7240013A986 /* AuthenticationOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOptionButton.swift; sourceTree = "<group>"; };
+		AA5FA9F72A0031CD00D894A3 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
+		AA5FA9F92A00334900D894A3 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		AA65E9D429F8CBC500052F5F /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		AA841C0F29F00DD600B09A56 /* NewTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetView.swift; sourceTree = "<group>"; };
 		AA841C1129F00F8700B09A56 /* TweetTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTextEditor.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 			children = (
 				AA65E9D429F8CBC500052F5F /* ImageUploader.swift */,
 				AAA11C5229F95A9C00DD0837 /* UserService.swift */,
+				AA5FA9F72A0031CD00D894A3 /* TweetService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 		AADE055229FFE1FE005998C6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA5FA9F92A00334900D894A3 /* UploadTweetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				AA2C74C329F5B2820013A986 /* SignedOutView.swift in Sources */,
 				AA05EA0E29F805CE00F736CF /* EditProfilePhotoView.swift in Sources */,
 				AA2C74C629F5B7240013A986 /* AuthenticationOptionButton.swift in Sources */,
+				AA5FA9FA2A00334900D894A3 /* UploadTweetViewModel.swift in Sources */,
 				AAFA752B29E9D7B50025D59B /* TweetFilterViewModel.swift in Sources */,
 				AA841C1029F00DD600B09A56 /* NewTweetView.swift in Sources */,
 				AA22853529EA1D3F005CB22A /* BlueCheck.swift in Sources */,
@@ -564,6 +571,7 @@
 				AAFA752729E8BF1E0025D59B /* BackArrow.swift in Sources */,
 				AAAFCC3C29E85BBB00CCA835 /* NotificationsView.swift in Sources */,
 				AA22854A29EBA582005CB22A /* FeedType.swift in Sources */,
+				AA5FA9F82A0031CD00D894A3 /* TweetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

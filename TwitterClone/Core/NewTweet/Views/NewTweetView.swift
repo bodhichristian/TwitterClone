@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NewTweetView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var tweetText = ""
+    @EnvironmentObject var authVM: AuthViewModel
+    
+    @ObservedObject var uploadTweetVM = UploadTweetViewModel()
+    
+    @State private var tweetBody = ""
     
     var body: some View {
         VStack {
@@ -23,7 +28,7 @@ struct NewTweetView: View {
                 Spacer()
                 
                 Button {
-                    // tweet
+                    uploadTweetVM.uploadTweet(withBody: tweetBody)
                 } label: {
                     Text("Tweet")
                         .font(.subheadline)
@@ -38,10 +43,25 @@ struct NewTweetView: View {
             .padding(.horizontal)
             
             HStack(alignment: .top) {
-                Circle()
-                    .frame(width: 32)
-                    .foregroundColor(.twitterBlue)
-                    .padding(.leading)
+                // Placeholder blue circle
+                if authVM.currentUser?.profilePhotoUrl == nil {
+                    Circle()
+                        .frame(width: 32)
+                        .foregroundColor(.twitterBlue)
+                        .padding(.leading)
+                } else {
+                    // User profile photo, if it exists
+                    if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
+                        KFImage(URL(string: profilePhoto))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 32, height: 32)
+                            .clipShape(Circle())
+                            .padding(.bottom, 5)
+                            .padding(.leading)
+                            
+                    }
+                }
                 
                 
 
@@ -55,7 +75,7 @@ struct NewTweetView: View {
                     }
                     .font(.subheadline)
 
-                    TweetTextEditor(tweetText: $tweetText, placeholder: "What's happening?")
+                    TweetTextEditor(tweetBody: $tweetBody, placeholder: "What's happening?")
                         .offset(x: -6, y: -6)
                 }
             }
@@ -66,5 +86,6 @@ struct NewTweetView: View {
 struct NewTweetView_Previews: PreviewProvider {
     static var previews: some View {
         NewTweetView()
+            .environmentObject(AuthViewModel())
     }
 }

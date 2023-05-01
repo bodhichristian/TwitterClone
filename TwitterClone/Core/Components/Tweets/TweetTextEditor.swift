@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct TweetTextEditor: View {
-    @Binding var tweetText: String
+    @Binding var tweetBody: String
     let placeholder: String
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            TextEditor(text: $tweetText)
+            TextEditor(text: $tweetBody)
                 .multilineTextAlignment(.leading)
                 .padding(4)
                 .font(.body)
             
-            if tweetText.isEmpty {
+            if tweetBody.isEmpty {
                 Text(placeholder)
                     .foregroundColor(Color(.placeholderText))
                     .padding(.horizontal, 6)
@@ -30,6 +30,6 @@ struct TweetTextEditor: View {
 
 struct TweetTextEditor_Previews: PreviewProvider {
     static var previews: some View {
-        TweetTextEditor(tweetText: .constant(""), placeholder: "What's happening?")
+        TweetTextEditor(tweetBody: .constant(""), placeholder: "What's happening?")
     }
 }
