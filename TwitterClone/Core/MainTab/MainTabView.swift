@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MainTabView: View {
+    @EnvironmentObject var authVM: AuthViewModel
+    @ObservedObject var exploreVM = ExploreViewModel()
+    
     @State private var selectedTab = 0
     @State private var showingSideMenu = false
     @State private var showingNewTweetView = false
@@ -27,7 +31,7 @@ struct MainTabView: View {
                             showingSideMenu = false
                         }
                     
-                    ExploreView(showingSideMenu: $showingSideMenu)
+                    ExploreView(exploreVM: exploreVM, showingSideMenu: $showingSideMenu)
                         .tabItem {
                             Image(systemName: "magnifyingglass")
                                 .environment(\.symbolVariants, .none)
@@ -36,10 +40,9 @@ struct MainTabView: View {
                         .toolbarBackground(.visible, for: .tabBar)
                         .onTapGesture {
                             showingSideMenu = false
-//                            selectedTab = 1
-
+                            
                         }
-
+                    
                     
                     CommunitiesView()
                         .tabItem {
@@ -49,8 +52,7 @@ struct MainTabView: View {
                         .tag(2)
                         .onTapGesture {
                             showingSideMenu = false
-//                            selectedTab = 2
-
+                            
                         }
                     
                     NotificationsView()
@@ -61,8 +63,7 @@ struct MainTabView: View {
                         .tag(3)
                         .onTapGesture {
                             showingSideMenu = false
-//                            selectedTab = 3
-
+                            
                         }
                     
                     MessagesView()
@@ -73,14 +74,13 @@ struct MainTabView: View {
                         .tag(4)
                         .onTapGesture {
                             showingSideMenu = false
-//                            selectedTab = 4
-
+                            
                         }
                 }
                 
                 SideMenuView()
                     .offset(x: showingSideMenu ? 0 : -400)
-                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
+                // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
                     .onDisappear {
                         showingSideMenu = false
                     }
@@ -88,13 +88,66 @@ struct MainTabView: View {
                 newTweetButton
                     .offset(x: showingSideMenu ? 100 : 0, y: -48)
             }
-
+            .toolbar {
+                // Profile picture, side menu reveal
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        withAnimation {
+                            showingSideMenu.toggle()
+                        }
+                    } label: {
+                        if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
+                            KFImage(URL(string: profilePhoto))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 32, height: 32)
+                                .clipShape(Circle())
+                                .padding(.bottom, 5)
+                            
+                        } else {
+                            Circle()
+                                .frame(width: 32)
+                                .foregroundColor(.twitterBlue)
+                                .padding(.leading, -4)
+                        }
+                    }
+                    .opacity(showingSideMenu ? 0 : 1)
+                    
+                }
+                if selectedTab == 0 {
+                    // Twitter logo
+                    ToolbarItem(placement: .principal) {
+                        TwitterLogo()
+                            .padding(8)
+                            .opacity(showingSideMenu ? 0 : 1)
+                    }
+                } else if selectedTab == 1 {
+                    ToolbarItem(placement: .principal) {
+                        SearchBar(text: $exploreVM.searchText)
+                        
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "gear")
+                        }
+                        .tint(.primary)
+                    }
+                }
+            }
+            // Maintains header shape
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
+
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
+            .environmentObject(AuthViewModel())
+        
     }
 }
 
@@ -115,7 +168,7 @@ extension MainTabView {
                         Image(systemName: "plus")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            //.frame(width: 56, height: 56)
+                        //.frame(width: 56, height: 56)
                     }
                     .fullScreenCover(isPresented: $showingNewTweetView) {
                         NewTweetView()

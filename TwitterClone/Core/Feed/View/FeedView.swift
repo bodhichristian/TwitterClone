@@ -9,7 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct FeedView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var authVM: AuthViewModel
+    @ObservedObject var feedVM = FeedViewModel()
     
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
@@ -41,47 +42,18 @@ struct FeedView: View {
                         }
                 }
 
-//
-//                SideMenuView()
-//                    .offset(x: showingSideMenu ? 0 : -400)
-//                    // After user travels away from menu, it is hidden offscreen to ensure a HomeTab reset
-//                    .onDisappear {
-//                        showingSideMenu = false
-//                    }
-            }
-            .toolbar {
-                // Profile picture, side menu reveal
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            showingSideMenu.toggle()
-                        }
-                    } label: {
-                    if let profilePhoto = viewModel.currentUser?.profilePhotoUrl {
-                            KFImage(URL(string: profilePhoto))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 32, height: 32)
-                                .clipShape(Circle())
-                                .padding(.bottom, 5)
-                                
-                        } else {
-                            Circle()
-                                .frame(width: 32)
-                                .foregroundColor(.twitterBlue)
-                                .padding(.leading, -4)
-                        }
-                    }
-                    .opacity(showingSideMenu ? 0 : 1)
 
-                }
-                // Twitter logo
-                ToolbarItem(placement: .principal) {
-                    TwitterLogo()
-                        .padding(8)
-                        .opacity(showingSideMenu ? 0 : 1)
-                }
             }
+        
+//            .toolbar {
+//                
+//                // Twitter logo
+//                ToolbarItem(placement: .principal) {
+//                    TwitterLogo()
+//                        .padding(8)
+//                        .opacity(showingSideMenu ? 0 : 1)
+//                }
+//            }
             // Maintains header shape
             .navigationBarTitleDisplayMode(.inline)
         }

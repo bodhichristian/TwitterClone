@@ -12,7 +12,7 @@ struct NewTweetView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authVM: AuthViewModel
     
-    @ObservedObject var uploadTweetVM = UploadTweetViewModel()
+    @ObservedObject var newTweetVM = UploadTweetViewModel()
     
     @State private var tweetBody = ""
     
@@ -28,7 +28,7 @@ struct NewTweetView: View {
                 Spacer()
                 
                 Button {
-                    uploadTweetVM.uploadTweet(withBody: tweetBody)
+                    newTweetVM.uploadTweet(withBody: tweetBody)
                 } label: {
                     Text("Tweet")
                         .font(.subheadline)
@@ -78,6 +78,14 @@ struct NewTweetView: View {
                     TweetTextEditor(tweetBody: $tweetBody, placeholder: "What's happening?")
                         .offset(x: -6, y: -6)
                 }
+            }
+        }
+        // When didUploadTweet's change is published
+        .onReceive(newTweetVM.$didUploadTweet) { success in
+            // If successfully uploaded
+            if success {
+                // Dismiss modal view
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }
