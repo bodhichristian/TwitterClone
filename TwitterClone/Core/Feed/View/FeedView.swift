@@ -30,17 +30,7 @@ struct FeedView: View {
                         }
                     }
                 }
-                // Overlays FeedView when Side Menu is visible
-                // Tapping on black background pushes SideMenuView off screen
-                if showingSideMenu {
-                    Color.black.opacity(0.4)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation {
-                                showingSideMenu = false
-                            }
-                        }
-                }
+
 
 
             }
