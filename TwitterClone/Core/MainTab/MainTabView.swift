@@ -124,7 +124,8 @@ struct MainTabView: View {
                 } else if selectedTab == 1 {
                     ToolbarItem(placement: .principal) {
                         SearchBar(text: $exploreVM.searchText)
-                        
+                            .opacity(showingSideMenu ? 0 : 1)
+
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -134,6 +135,8 @@ struct MainTabView: View {
                             Image(systemName: "gear")
                         }
                         .tint(.primary)
+                        .opacity(showingSideMenu ? 0 : 1)
+
                     }
                 }
             }
