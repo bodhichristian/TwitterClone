@@ -20,6 +20,26 @@ struct FeedView: View {
         NavigationView {
             ZStack(alignment: .topLeading) {
                 VStack {
+                    HStack {
+                        Button {
+                            showingSideMenu = true
+                        } label: {
+                            if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
+                                KFImage(URL(string: profilePhoto))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 32, height: 32)
+                                    .clipShape(Circle())
+                                    .padding(.leading, 5)
+                                
+                            } else {
+                                Circle()
+                                    .frame(width: 32)
+                                    .foregroundColor(.twitterBlue)
+                                    .padding(.leading, -4)
+                            }
+                        }
+                    }
                     header
                     // Tweets
                     ScrollView {
