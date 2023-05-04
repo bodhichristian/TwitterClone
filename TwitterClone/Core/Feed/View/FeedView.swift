@@ -113,14 +113,15 @@ extension FeedView {
                 .offset(y: 8)
             }
         }
+        .padding(.bottom, 10)
     }
     
     var feed: some View {
         // Tweets
         ScrollView {
             LazyVStack {
-                ForEach(0..<20, id: \.self) { _ in
-                    TweetRowView()
+                ForEach(feedVM.feed) { tweet in
+                    TweetRowView(tweet: tweet)
                 }
             }
         }
