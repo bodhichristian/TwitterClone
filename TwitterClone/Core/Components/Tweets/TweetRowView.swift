@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TweetRowView: View {
     let tweet: Tweet
@@ -14,37 +15,55 @@ struct TweetRowView: View {
         VStack(alignment: .leading) {
             // Profile Image, user info, tweet
             HStack(alignment: .top, spacing: 12) {
-                Circle()
-                    .frame(width: 40)
-                    .foregroundColor(.twitterBlue)
+                if let profilePhoto = tweet.user?.profilePhotoUrl {
+                    KFImage(URL(string: profilePhoto))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40)
+                        .clipShape(Circle())
+                        .offset(y: -12)
+                    
+                } else {
+                    Circle()
+                        .frame(width: 40)
+                        .foregroundColor(.twitterBlue)
+                    
+                }
                 
                 // User info, tweet body
                 VStack(alignment: .leading, spacing: 4) {
+                    
                     // User info
-                    HStack(alignment: .bottom) {
-                        Text("Bruce Wayne")
-                            .font(.subheadline).bold()
-                        
-                        Text("@batman")
-                            .foregroundColor(.secondary)
-                            .font(.subheadline)
-                        
-                        Text("· 2w")
-                            .foregroundColor(.secondary)
-                            .font(.subheadline)
-                        
-                        Spacer()
-                        
-                        Button {
-                            // Ellipsis actions
-                        } label : {
-                            Image(systemName: "ellipsis")
-                                .resizable()
-                                .frame(width: 12, height: 3)
+                    
+                    
+                    if let user = tweet.user {
+                        HStack(alignment: .bottom, spacing: 4) {
+                            Text(user.name)
+                                .font(.subheadline).bold()
+                            
+                            Text("@\(user.username)")
                                 .foregroundColor(.secondary)
-                                .offset(y: -5)
+                                .font(.subheadline)
+                            
+                            Text("· 2w")
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)
+                            
+                            Spacer()
+                            
+                            Button {
+                                // Ellipsis actions
+                            } label : {
+                                Image(systemName: "ellipsis")
+                                    .resizable()
+                                    .frame(width: 12, height: 3)
+                                    .foregroundColor(.secondary)
+                                    .offset(y: -5)
+                            }
                         }
                     }
+                    
+                    
                     
                     // Tweet body
                     Text(tweet.body)
@@ -103,14 +122,14 @@ struct TweetRowView: View {
             .padding(.top, 4)
             // Action buttons
             
-
+            
             
             // Divider
             Rectangle()
                 .frame(height: 0.5)
                 .foregroundColor(.secondary.opacity(0.3))
         }
-       // .padding()
+        // .padding()
     }
 }
 
