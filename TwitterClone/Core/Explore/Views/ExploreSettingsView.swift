@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ExploreSettingsView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         Text("Explore Settings View")
+        
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label : {
+            Text("Go back")
+        }
     }
 }
 

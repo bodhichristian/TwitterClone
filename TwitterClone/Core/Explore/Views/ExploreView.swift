@@ -20,7 +20,9 @@ struct ExploreView: View {
         VStack {
             HStack {
                 Button {
-                    showingSideMenu = true
+                    withAnimation{
+                        showingSideMenu = true
+                    }
                 } label: {
                     if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
                         KFImage(URL(string: profilePhoto))
@@ -28,15 +30,14 @@ struct ExploreView: View {
                             .scaledToFill()
                             .frame(width: 32, height: 32)
                             .clipShape(Circle())
-                            .padding(.leading, 5)
                         
                     } else {
                         Circle()
                             .frame(width: 32)
                             .foregroundColor(.twitterBlue)
-                            .padding(.leading, -4)
                     }
                 }
+                .offset(y: -3)
                 
                 
                 SearchBar(text: $exploreVM.searchText)
@@ -52,6 +53,7 @@ struct ExploreView: View {
                 }.offset(x: showingSideMenu ? 100 : 0)
             }
             .padding(.horizontal)
+            
             ScrollView {
                 LazyVStack {
                     ForEach(exploreVM.searchableUsers) { user in

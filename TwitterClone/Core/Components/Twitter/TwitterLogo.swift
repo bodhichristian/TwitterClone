@@ -12,7 +12,7 @@ struct TwitterLogo: View {
         Image("twitterLogo")
             .resizable()
             .scaledToFit()
-            .frame(width: 36)
+            .frame(width: 32)
     }
 }
 

@@ -15,58 +15,73 @@ struct FeedView: View {
     @Namespace var animation // For animating blue bar in tweetFilter
     @State private var selectedFeed: FeedType = .forYou
     @Binding var showingSideMenu: Bool
-
+    
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .topLeading) {
-                VStack {
-                    HStack {
-                        Button {
-                            showingSideMenu = true
-                        } label: {
-                            if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
-                                KFImage(URL(string: profilePhoto))
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 32, height: 32)
-                                    .clipShape(Circle())
-                                    .padding(.leading, 5)
-                                
-                            } else {
-                                Circle()
-                                    .frame(width: 32)
-                                    .foregroundColor(.twitterBlue)
-                                    .padding(.leading, -4)
-                            }
-                        }
+        
+        VStack {
+            HStack {
+                Button {
+                    withAnimation{
+                        showingSideMenu = true
                     }
-                    header
-                    // Tweets
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(0..<20, id: \.self) { _ in
-                                TweetRowView()
-                            }
-                        }
+                } label: {
+                    if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
+                        KFImage(URL(string: profilePhoto))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 32, height: 32)
+                            .clipShape(Circle())
+                           // .padding(.leading, 5)
+                        
+                    } else {
+                        Circle()
+                            .frame(width: 32)
+                            .foregroundColor(.twitterBlue)
+                            //.padding(.leading, -4)
                     }
                 }
 
-
-
+                
+                Spacer()
+                
+                TwitterLogo()
+                   // .padding(8)
+                    .opacity(showingSideMenu ? 0 : 1)
+                
+                Spacer()
+                
+                Circle()
+                    .frame(width: 32)
+                    .foregroundColor(.clear)
             }
-        
-//            .toolbar {
-//                
-//                // Twitter logo
-//                ToolbarItem(placement: .principal) {
-//                    TwitterLogo()
-//                        .padding(8)
-//                        .opacity(showingSideMenu ? 0 : 1)
-//                }
-//            }
-            // Maintains header shape
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal)
+            header
+            // Tweets
+            ScrollView {
+                LazyVStack {
+                    ForEach(0..<20, id: \.self) { _ in
+                        TweetRowView()
+                    }
+                }
+            }
+            
+            
+            
+            
         }
+        
+        //            .toolbar {
+        //
+        //                // Twitter logo
+        //                ToolbarItem(placement: .principal) {
+        //                    TwitterLogo()
+        //                        .padding(8)
+        //                        .opacity(showingSideMenu ? 0 : 1)
+        //                }
+        //            }
+        // Maintains header shape
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 
@@ -81,7 +96,7 @@ extension FeedView {
     var header: some View {
         ZStack{
             // Header background
-            Rectangle().foregroundStyle(.ultraThinMaterial)
+            Rectangle().foregroundStyle(.clear)
                 .frame(height: 144)
                 .offset(y: -100)
                 .padding(.bottom, -100)
