@@ -64,24 +64,7 @@ struct FeedView: View {
                     }
                 }
             }
-            
-            
-            
-            
         }
-        
-        //            .toolbar {
-        //
-        //                // Twitter logo
-        //                ToolbarItem(placement: .principal) {
-        //                    TwitterLogo()
-        //                        .padding(8)
-        //                        .opacity(showingSideMenu ? 0 : 1)
-        //                }
-        //            }
-        // Maintains header shape
-        .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 
