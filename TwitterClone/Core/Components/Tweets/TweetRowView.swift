@@ -15,19 +15,26 @@ struct TweetRowView: View {
         VStack(alignment: .leading) {
             // Profile Image, user info, tweet
             HStack(alignment: .top, spacing: 12) {
-                if let profilePhoto = tweet.user?.profilePhotoUrl {
-                    KFImage(URL(string: profilePhoto))
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 40)
-                        .clipShape(Circle())
-                        .offset(y: -12)
+                
+                
+                VStack {
+                    if let profilePhoto = tweet.user?.profilePhotoUrl {
+                        KFImage(URL(string: profilePhoto))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+
+                            //.offset(y: -12)
+                        
+                    } else {
+                        Circle()
+                            .frame(width: 40)
+                            .foregroundColor(.twitterBlue)
+                        
+                    }
                     
-                } else {
-                    Circle()
-                        .frame(width: 40)
-                        .foregroundColor(.twitterBlue)
-                    
+                    Spacer()
                 }
                 
                 // User info, tweet body
