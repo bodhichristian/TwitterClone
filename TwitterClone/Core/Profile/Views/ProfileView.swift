@@ -10,13 +10,15 @@ import Kingfisher
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var mode
-   // @EnvironmentObject var viewModel: AuthViewModel
-    let user: User
+    @ObservedObject var viewModel: ProfileViewModel
     @State private var selectedFilter: TweetFilterViewModel = .tweets
     @State private var showingEditProfilePhotoView = false
-    
     @Namespace var animation // For animating blue bar in tweetFilter
     
+    init(user: User ) {
+        self.viewModel = ProfileViewModel(user: user)
+        self.viewModel.fetchUserTweets()
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -38,7 +40,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(user: User.example)
-            .environmentObject(AuthViewModel())
     }
 }
 
@@ -59,7 +60,7 @@ extension ProfileView {
                 
                 // Profile Picture
                 ZStack {
-                    if let profilePhoto = user.profilePhotoUrl {
+                    if let profilePhoto = viewModel.user.profilePhotoUrl {
                         KFImage(URL(string: profilePhoto))
                             .resizable()
                             .scaledToFill()
@@ -111,7 +112,7 @@ extension ProfileView {
             // ID Badge
             HStack(spacing: 4) {
                 // Display Name
-                Text(user.name)
+                Text(viewModel.user.name)
                     .font(.title3).fontWeight(.semibold)
                     .padding(.top, 15)
                 // Verified
@@ -119,7 +120,7 @@ extension ProfileView {
                     .offset(y: 8)
             }
             // @username
-            Text("@\(user.username)")
+            Text("@\(viewModel.user.username)")
                 .font(.caption)
                 .foregroundColor(.secondary)
             // Bio
@@ -191,8 +192,8 @@ extension ProfileView {
     var tweetsView: some View {
         ScrollView {
             LazyVStack {
-                ForEach(0..<10, id: \.self) { _ in
-                    TweetRowView(tweet: Tweet.example)
+                ForEach(viewModel.tweets) { tweet in
+                    TweetRowView(tweet: tweet)
                 }
             }
         }

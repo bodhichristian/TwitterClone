@@ -31,12 +31,30 @@ struct TweetService {
             }
     }
     
+    // Fetch tweets for FeedView
     func fetchTweets(completion: @escaping([Tweet]) -> Void) {
         Firestore.firestore().collection("tweets")
             .getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents else { return }
                 let tweets = documents.compactMap { try? $0.data(as: Tweet.self) }
                 completion(tweets)
+                
+                if let error = error {
+                    print("DEBUG: Error fetching tweets with error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    // Fetch tweets for ProfileView
+    func fetchUserTweets(uid: String, completion: @escaping([Tweet]) -> Void) {
+        Firestore.firestore().collection("tweets")
+            .whereField("uid", isEqualTo: uid)
+        // reference 5:57:00 if does not work
+           // .order(by: "timestamp", descending: true) // sort tweets by timestamp
+            .getDocuments { snapshot, error in
+                guard let documents = snapshot?.documents else { return }
+                var tweets = documents.compactMap { try? $0.data(as: Tweet.self) }
+                completion(tweets.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()}))
                 
                 if let error = error {
                     print("DEBUG: Error fetching tweets with error: \(error.localizedDescription)")
