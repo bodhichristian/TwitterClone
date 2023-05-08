@@ -61,7 +61,7 @@ struct TweetService {
             }
     }
     
-    func likeTweet(_ tweet: Tweet) {
+    func likeTweet(_ tweet: Tweet, completion: @escaping() -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let tweetID = tweet.id else { return }
         
@@ -70,6 +70,7 @@ struct TweetService {
         Firestore.firestore().collection("tweets").document(tweet.id ?? "")
             .updateData(["likes":  tweet.likes + 1]) { _ in
                 userLikesReference.document(tweetID).setData([:]) { _ in
+                    completion()
                     print("Did like tweet")
                 }
             }

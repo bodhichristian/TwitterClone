@@ -8,15 +8,17 @@
 import Foundation
 
 class TweetRowViewModel: ObservableObject {
+    @Published var tweet: Tweet
     
     private let service = TweetService()
-    let tweet: Tweet
     
     init(tweet: Tweet) {
         self.tweet = tweet
     }
     
     func likeTweet() {
-        service.likeTweet(tweet)
+        service.likeTweet(tweet) {
+            self.tweet.didLike = true
+        }
     }
 }
