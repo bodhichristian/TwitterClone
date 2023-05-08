@@ -9,7 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct TweetRowView: View {
-    let tweet: Tweet
+    let viewModel: TweetRowViewModel
+    
+    init(tweet: Tweet) {
+        self.viewModel = TweetRowViewModel(tweet: tweet)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,7 +22,7 @@ struct TweetRowView: View {
                 
                 
                 VStack {
-                    if let profilePhoto = tweet.user?.profilePhotoUrl {
+                    if let profilePhoto = viewModel.tweet.user?.profilePhotoUrl {
                         KFImage(URL(string: profilePhoto))
                             .resizable()
                             .scaledToFill()
@@ -43,7 +47,7 @@ struct TweetRowView: View {
                     // User info
                     
                     
-                    if let user = tweet.user {
+                    if let user = viewModel.tweet.user {
                         HStack(alignment: .bottom, spacing: 4) {
                             Text(user.name)
                                 .font(.subheadline).bold()
@@ -73,11 +77,12 @@ struct TweetRowView: View {
                     
                     
                     // Tweet body
-                    Text(tweet.body)
+                    Text(viewModel.tweet.body)
                         .font(.subheadline)
                         .multilineTextAlignment(.leading)
                     
                     HStack {
+                        // Reply
                         Button {
                             // action
                         } label: {
@@ -87,6 +92,7 @@ struct TweetRowView: View {
                         
                         Spacer()
                         
+                        // Retweet
                         Button {
                             // action
                         } label: {
@@ -96,8 +102,9 @@ struct TweetRowView: View {
                         
                         Spacer()
                         
+                        // Like(s)
                         Button {
-                            // action
+                            viewModel.likeTweet()
                         } label: {
                             Image(systemName: "heart")
                                 .font(.subheadline)
@@ -105,6 +112,7 @@ struct TweetRowView: View {
                         
                         Spacer()
                         
+                        // Analytics
                         Button {
                             // action
                         } label: {
@@ -113,6 +121,7 @@ struct TweetRowView: View {
                         }
                         Spacer()
                         
+                        // Share
                         Button {
                             // action
                         } label: {

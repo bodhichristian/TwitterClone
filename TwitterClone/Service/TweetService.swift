@@ -49,8 +49,7 @@ struct TweetService {
     func fetchUserTweets(uid: String, completion: @escaping([Tweet]) -> Void) {
         Firestore.firestore().collection("tweets")
             .whereField("uid", isEqualTo: uid)
-        // reference 5:57:00 if does not work
-           // .order(by: "timestamp", descending: true) // sort tweets by timestamp
+
             .getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents else { return }
                 var tweets = documents.compactMap { try? $0.data(as: Tweet.self) }
@@ -58,6 +57,20 @@ struct TweetService {
                 
                 if let error = error {
                     print("DEBUG: Error fetching tweets with error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    func likeTweet(_ tweet: Tweet) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let tweetID = tweet.id else { return }
+        
+        let userLikesReference  = Firestore.firestore().collection("users").document(uid).collection("user-likes")
+        
+        Firestore.firestore().collection("tweets").document(tweet.id ?? "")
+            .updateData(["likes":  tweet.likes + 1]) { _ in
+                userLikesReference.document(tweetID).setData([:]) { _ in
+                    print("Did like tweet")
                 }
             }
     }
