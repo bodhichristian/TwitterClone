@@ -104,7 +104,12 @@ struct TweetRowView: View {
                         
                         // Like(s)
                         Button {
-                            viewModel.likeTweet()
+                            // Has user liked tweet? nil coalesce to false
+                            viewModel.tweet.didLike ?? false
+                            // If yes, button calls unlikeTweet()
+                            ? viewModel.unlikeTweet()
+                            // If no, button calls likeTweet()
+                            : viewModel.likeTweet()
                         } label: {
                             Image(systemName: viewModel.tweet.didLike ?? false ? "heart.fill" : "heart")
                                 .font(.subheadline)
