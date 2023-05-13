@@ -127,6 +127,7 @@ extension TweetService {
                         .getDocument { snapshot, _ in
                             guard let tweet = try? snapshot?.data(as: Tweet.self) else { return }
                             tweets.append(tweet)
+                            
                             completion(tweets)
                         }
                 }
