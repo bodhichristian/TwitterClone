@@ -104,7 +104,7 @@ struct TweetRowView: View {
                         
                         // Like(s)
                         Button {
-                            // Has user liked tweet? nil coalesce to false
+                            // Has user liked tweet? Nil coalesce to false
                             viewModel.tweet.didLike ?? false
                             // If yes, button calls unlikeTweet()
                             ? viewModel.unlikeTweet()

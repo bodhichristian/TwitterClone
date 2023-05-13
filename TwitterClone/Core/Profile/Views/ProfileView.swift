@@ -23,7 +23,7 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .leading) {
             headerView
-            editProfileButton
+            actionButton
             aboutView
             tweetFilterBar
             tweetsView
@@ -86,15 +86,15 @@ extension ProfileView {
         .frame(height: 112)
         .navigationBarBackButtonHidden(true)
     }
-    
-    var editProfileButton: some View {
+    // Edit Profile or Follow
+    var actionButton: some View {
         HStack {
             Spacer()
             
             Button {
                 // Edit Profile Action
             } label: {
-                Text("Edit Profile")
+                Text(viewModel.actionButtonTitle)
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
@@ -192,7 +192,7 @@ extension ProfileView {
     var tweetsView: some View {
         ScrollView {
             LazyVStack {
-                ForEach(viewModel.tweets) { tweet in
+                ForEach(viewModel.tweets(forFilter: self.selectedFilter)) { tweet in
                     TweetRowView(tweet: tweet)
                 }
             }
