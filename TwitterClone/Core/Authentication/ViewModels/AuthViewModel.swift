@@ -64,7 +64,7 @@ class AuthViewModel: ObservableObject {
             
             self.fetchUser()
         }
-}
+    }
     
     func logOut() {
         // Ends user session locally
@@ -84,14 +84,41 @@ class AuthViewModel: ObservableObject {
             Firestore.firestore().collection("users")
                 .document(uid)
                 .updateData(["profilePhotoUrl": profilePhotoUrl]) { error in
-                    // Handle error
-                    if let error = error {
+                    if let error = error { // Handle error
                         print("Error updating user profile photo: \(error.localizedDescription)")
                         return
                     }
                 }
             self.fetchUser()
         }
+    }
+    
+    func saveProfileEdits(newBio: String?, selectedBannerImage: UIImage?) {
+        guard let uid = userSession?.uid else { return }
+        
+        if let profileBannerImage = selectedBannerImage {
+            ImageUploader.uploadImage(image: profileBannerImage) { profileBannerImage in
+                Firestore.firestore().collection("users")
+                    .document(uid)
+                    .updateData(["profileBannerImageUrl": profileBannerImage]) { error in
+                        if let error = error {
+                            print("Error updating bio: \(error.localizedDescription)")
+                            return
+                        }
+                    }
+            }
+        }
+        
+        if let newBio = newBio {
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["bio": newBio]) { error in
+                    if let error = error {
+                        print("Error updating bio: \(error.localizedDescription)")
+                    }
+                }
+        }
+        self.fetchUser()
     }
     
     func fetchUser() {

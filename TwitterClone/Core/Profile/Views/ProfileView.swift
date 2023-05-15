@@ -12,6 +12,7 @@ struct ProfileView: View {
     @Environment(\.presentationMode) var mode
     @ObservedObject var viewModel: ProfileViewModel
     @State private var selectedFilter: TweetFilterViewModel = .tweets
+    @State private var showingEditProfileView = false
     @State private var showingEditProfilePhotoView = false
     @Namespace var animation // For animating blue bar in tweetFilter
     
@@ -30,6 +31,9 @@ struct ProfileView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $showingEditProfileView) {
+            EditProfileView()
+        }
         .sheet(isPresented: $showingEditProfilePhotoView) {
             EditProfilePhotoView()
         }
@@ -45,9 +49,25 @@ struct ProfileView_Previews: PreviewProvider {
 
 extension ProfileView {
     var headerView: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .topLeading) {
             Color.twitterBlue
                 .ignoresSafeArea()
+            
+            
+            VStack {
+            
+                if let profileBannerImageUrl = viewModel.user.profileBannerImageUrl {
+                    KFImage(URL(string: profileBannerImageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 84)
+                        .ignoresSafeArea()
+                    
+                } else {
+
+                }
+                Spacer()
+            }
             
             // Back Arrow
             VStack {
@@ -55,7 +75,6 @@ extension ProfileView {
                     mode.wrappedValue.dismiss()
                 } label: {
                     BackArrow()
-                        .offset(x: 2, y: 10)
                 }
                 
                 // Profile Picture
@@ -93,7 +112,13 @@ extension ProfileView {
             Spacer()
             
             Button {
-                // Edit Profile Action
+                // If viewing own profile
+                if viewModel.user.isCurrentUser {
+                    showingEditProfileView = true
+                } else { // If viewing any other user's profile.
+                    // Handle follow/unfollow actions
+                }
+                
             } label: {
                 Text(viewModel.actionButtonTitle)
                     .font(.footnote)
@@ -125,7 +150,7 @@ extension ProfileView {
                 .font(.caption)
                 .foregroundColor(.secondary)
             // Bio
-            Text("For if knowledge is power, then a god am I! \nWas that over the top❓I can never tell.")
+            Text(viewModel.user.bio ?? "")
                 .font(.subheadline)
                 .padding(.top, 10)
                 .padding(.bottom, 6)

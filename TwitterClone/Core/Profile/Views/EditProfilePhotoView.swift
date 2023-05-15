@@ -113,8 +113,7 @@ struct EditProfilePhotoView: View {
                             // Upload image
                             viewModel.uploadProfilePhoto(selectedImage)
                         }
-                        // Refresh user data
-                        viewModel.fetchUser()
+
                         // Display upload in progress message
                         uploading = true
                         // Dismiss sheet after 3 seconds, so parent view has time to reload profile photo
