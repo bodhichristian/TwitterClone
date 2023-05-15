@@ -61,6 +61,7 @@ extension ProfileView {
                         .resizable()
                         .scaledToFill()
                         .frame(height: 84)
+                        .offset(y: 20)
                         .ignoresSafeArea()
                     
                 } else {
@@ -149,24 +150,30 @@ extension ProfileView {
             Text("@\(viewModel.user.username)")
                 .font(.caption)
                 .foregroundColor(.secondary)
+            
+            
             // Bio
-            Text(viewModel.user.bio ?? "")
-                .font(.subheadline)
-                .padding(.top, 10)
-                .padding(.bottom, 6)
+            if let bio = viewModel.user.bio {
+                Text(bio)
+                    .font(.subheadline)
+                    .padding(.top, 10)
+            }
             
             // Details
             HStack {
                 // Location
                 HStack(spacing: 2) {
                     Image(systemName: "mappin.and.ellipse")
-                    Text("Gotham, NY")
+                    Text("New Republic")
                     
                 }
                 // Website
-                HStack(spacing: 2) {
-                    Image(systemName: "link")
-                    Text("www.theriddler.com")
+                if let website = viewModel.user.website {
+                    HStack(spacing: 2) {
+                        Image(systemName: "link")
+                        Link(website, destination: URL(string: website) ?? URL(string: "www.google.com")!)
+                            .foregroundColor(.twitterBlue)
+                    }
                 }
                 // Tenure
                 HStack(spacing: 2) {
@@ -176,6 +183,7 @@ extension ProfileView {
             }
             .font(.caption)
             .foregroundColor(.primary.opacity((0.6)))
+            .padding(.top, 6)
 
             // Following/Followers Count
             FollowingFollowersView(following: 666, followers: 999)
