@@ -86,7 +86,8 @@ extension ProfileView {
         .frame(height: 112)
         .navigationBarBackButtonHidden(true)
     }
-    // Edit Profile or Follow
+    
+    // Edit Profile or Follow Button
     var actionButton: some View {
         HStack {
             Spacer()

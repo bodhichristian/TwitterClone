@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct EditProfilePhotoView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
     
     @State private var profilePhoto: Image?
@@ -19,7 +19,7 @@ struct EditProfilePhotoView: View {
     @State private var uploading = false
     @State private var uploadingMessage: [String] = "Uploading new profile photo...".map { String($0) }
     @State private var counter: Int = 0
-    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect() // for uploading image text animation
 
     
     var body: some View {
@@ -99,12 +99,11 @@ struct EditProfilePhotoView: View {
                 // Cancel Button
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     } label: {
                         Text("Cancel")
                             .foregroundColor(.primary)
                     }
-                    .tint(.twitterBlue)
                 }
                 // Save button
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -121,12 +120,13 @@ struct EditProfilePhotoView: View {
                         // Dismiss sheet after 3 seconds, so parent view has time to reload profile photo
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                             // Dismiss sheet
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                     } label: {
                         Text("Save")
-                            .foregroundColor(.twitterBlue)
+                            .foregroundColor(selectedImage == nil ? .gray : .twitterBlue)
                     }
+                    .disabled(selectedImage == nil)
                 }
             }
             // Maintains header shape

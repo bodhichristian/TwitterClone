@@ -17,6 +17,9 @@ struct User: Identifiable, Decodable {
     let phoneNumber: String
     let profilePhotoUrl: String?
     
+    
+    
+    
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id  }
     
     static let example = User(username: "enygma", email: "theriddler@dc.com", name: "The Riddler", phoneNumber: "999-999-9999", profilePhotoUrl: nil)
