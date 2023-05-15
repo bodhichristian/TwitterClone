@@ -121,8 +121,12 @@ extension FeedView {
         ScrollView {
             LazyVStack {
                 ForEach(feedVM.feed) { tweet in
-                    TweetRowView(tweet: tweet)
-                }
+                    NavigationLink {
+                        ProfileView(user: tweet.user ?? User.empty)
+                    } label: {
+                        TweetRowView(tweet: tweet)
+                    }
+                    .buttonStyle(PlainButtonStyle())                }
             }
         }
     }
