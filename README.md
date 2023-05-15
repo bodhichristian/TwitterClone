@@ -1,7 +1,7 @@
 # TwitterClone
 
-![TwitterClone Showcase 001](https://user-images.githubusercontent.com/110639779/234390796-7e67a7c3-a7da-48c8-8fd0-ead336de447c.jpeg)
-<b>Progress Pic</b> 4/25/2023
+![twitterclone showcase 5-15-23](https://github.com/bodhichristian/TwitterClone/assets/110639779/0bef5964-f5b2-4908-9913-34008b0ec821)
+<b>Progress Pic</b> 5/15/2023
 
 Taking queues from AppStuff's Twitter YouTube tutorial (https://www.youtube.com/watch?v=3pIXMwvJLZs&t=8182s) to build a functioning Twitter clone using SwiftUI. 
 
