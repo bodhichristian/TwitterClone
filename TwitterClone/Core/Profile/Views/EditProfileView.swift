@@ -15,6 +15,8 @@ struct EditProfileView: View {
     
     @State private var newBio = ""
     @State private var newWebsite = ""
+    @State private var newLocation = ""
+    @State private var newName = ""
     @State private var uploading = false
     
     @State private var profilePhoto: Image?
@@ -64,27 +66,86 @@ struct EditProfileView: View {
                 
                 
                 
-                
-                
-                // Bio
-                HStack {
-                    Text("Bio")
-                        .font(.headline)
-                    TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio)
-                        .textInputAutocapitalization(.never)
-                }
-                .padding(.horizontal)
                 Divider()
+                    .padding(.top)
                 
-                // Website
-                HStack {
-                    Text("Website")
-                        .font(.headline)
-                    TextField(viewModel.currentUser?.bio ?? "Add a website", text: $newWebsite)
-                        .textInputAutocapitalization(.never)
+                
+                // CLEAN ME UP!!!
+                Group {
+                    // Bio
+                    HStack {
+                        ZStack(alignment: .bottomLeading) {
+                            Rectangle()
+                                .frame(width: 70, height: 20)
+                                .foregroundColor(.clear)
+                            Text("Name")
+                                .font(.headline)
+                            
+                        }
+                        TextField(viewModel.currentUser?.bio ?? "Add a name", text: $newName)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(.horizontal)
+                    Divider()
+                    
+                    
+                    
+                    // Bio
+                    HStack {
+                        ZStack(alignment: .bottomLeading) {
+                            Rectangle()
+                                .frame(width: 70, height: 20)
+                                .foregroundColor(.clear)
+                            Text("Bio")
+                                .font(.headline)
+                            
+                        }
+                        TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(.horizontal)
+                    Divider()
+                    
+                    
+                    
+                    // Location
+                    HStack {
+                        ZStack(alignment: .bottomLeading) {
+                            Rectangle()
+                                .frame(width: 70, height: 20)
+                                .foregroundColor(.clear)
+                            Text("Location")
+                                .font(.headline)
+                            
+                        }
+                        TextField(viewModel.currentUser?.bio ?? "Add a location", text: $newLocation)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(.horizontal)
+                    Divider()
+                    
+                    
+                    
+                    
+                    // Website
+                    HStack {
+                        ZStack(alignment: .bottomLeading) {
+                            Rectangle()
+                                .frame(width: 70, height: 20)
+                                .foregroundColor(.clear)
+                            Text("Website")
+                                .font(.headline)
+                            
+                        }
+                        TextField(viewModel.currentUser?.bio ?? "Add a website", text: $newWebsite)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(.horizontal)
+                    Divider()
                 }
-                .padding(.horizontal)
-                Divider()
+                
+                
+
                 
                 
                 
