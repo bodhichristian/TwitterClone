@@ -18,6 +18,12 @@ struct Tweet: Identifiable, Decodable {
     var user: User?
     var didLike: Bool? = false // Must be optional to decode properly
 
-    
-    static let example = Tweet(body: "This is a test tweet", timestamp: Timestamp(), uid: "RandomUIDLOL", likes: 0, user: User.example)
+    // Example tweet for previews
+    static let example = Tweet(
+        body: "This is a test tweet",
+        timestamp: Timestamp(),
+        uid: "RandomUIDLOL",
+        likes: 0,
+        user: User.example
+    )
 }
