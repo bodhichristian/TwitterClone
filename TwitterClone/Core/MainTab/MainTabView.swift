@@ -99,59 +99,7 @@ struct MainTabView: View {
                 newTweetButton
                     .offset(x: showingSideMenu ? 100 : 0, y: -48)
             }
-//            .toolbar {
-//                // Profile picture, side menu reveal
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        withAnimation {
-//                            showingSideMenu.toggle()
-//                        }
-//                    } label: {
-//                        if let profilePhoto = authVM.currentUser?.profilePhotoUrl {
-//                            KFImage(URL(string: profilePhoto))
-//                                .resizable()
-//                                .scaledToFill()
-//                                .frame(width: 32, height: 32)
-//                                .clipShape(Circle())
-//                                .padding(.bottom, 5)
-//                            
-//                        } else {
-//                            Circle()
-//                                .frame(width: 32)
-//                                .foregroundColor(.twitterBlue)
-//                                .padding(.leading, -4)
-//                        }
-//                    }
-//                    .opacity(showingSideMenu ? 0 : 1)
-//                    
-//                }
-//                if selectedTab == 0 {
-//                    // Twitter logo
-//                    ToolbarItem(placement: .principal) {
-//                        TwitterLogo()
-//                            .padding(8)
-//                            .opacity(showingSideMenu ? 0 : 1)
-//                    }
-//                }
-//                else if selectedTab == 1 {
-////                    ToolbarItem(placement: .principal) {
-////                        SearchBar(text: $exploreVM.searchText)
-////                            .opacity(showingSideMenu ? 0 : 1)
-////
-////                    }
-//                    
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button {
-//                            
-//                        } label: {
-//                            Image(systemName: "gear")
-//                        }
-//                        .tint(.primary)
-//                        .opacity(showingSideMenu ? 0 : 1)
-//
-//                    }
-//                }
-//            }
+
             // Maintains header shape
             .navigationBarTitleDisplayMode(.inline)
         }

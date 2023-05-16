@@ -70,7 +70,7 @@ struct EditProfileView: View {
                 HStack {
                     Text("Bio")
                         .font(.headline)
-                    TextField(viewModel.currentUser?.bio ?? "Add a bio.", text: $newBio)
+                    TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio)
                         .textInputAutocapitalization(.never)
                 }
                 .padding(.horizontal)
@@ -80,7 +80,7 @@ struct EditProfileView: View {
                 HStack {
                     Text("Website")
                         .font(.headline)
-                    TextField(viewModel.currentUser?.bio ?? "Add a website.", text: $newWebsite)
+                    TextField(viewModel.currentUser?.bio ?? "Add a website", text: $newWebsite)
                         .textInputAutocapitalization(.never)
                 }
                 .padding(.horizontal)
