@@ -21,10 +21,11 @@ struct User: Identifiable, Decodable {
     let bio: String?
     let website: String?
     
-    
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id  }
     
+    // Example User for previews
     static let example = User(username: "enygma", email: "theriddler@dc.com", name: "The Riddler", phoneNumber: "999-999-9999", profilePhotoUrl: nil, profileBannerImageUrl: nil, bio: "For if knowledge is power, then a god am I! Was that over the top? I can never tell.", website: "www.theriddler.com" )
+    // Empty User for missing User objects
     static let empty = User(username: "", email: "", name: "", phoneNumber: "", profilePhotoUrl: nil, profileBannerImageUrl: nil, bio: "" , website: "")
 }
 
