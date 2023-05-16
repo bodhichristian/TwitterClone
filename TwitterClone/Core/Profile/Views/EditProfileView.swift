@@ -10,18 +10,23 @@ import Kingfisher
 
 struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var viewModel: AuthViewModel
     
     @State private var newBio = ""
     @State private var newWebsite = ""
     @State private var uploading = false
     
-    @State private var showingEditProfilePhotoView = false
-    
+    @State private var profilePhoto: Image?
+    @State private var selectedProfilePhoto: UIImage?
+    @State private var pickingProfilePhoto = false
+
     @State private var profileBannerImage: Image?
-    @State private var selectedBannerImage: UIImage?
-    @State private var showingImagePicker = false
     
+    @State private var pickingBannerImage = false
+    @State private var selectedBannerImage: UIImage?
+    
+        
     @State private var uploadingMessage: [String] = "Uploading new banner image...".map { String($0) }
     @State private var counter: Int = 0
     let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect() // for uploading image text animation
@@ -29,82 +34,83 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
+                bannerImageSelector
+
+                profileImageSelector
                 
-                ZStack {
                 
-                    if viewModel.currentUser?.profileBannerImageUrl  == nil {
-                        Rectangle()
-                            .frame(height: 200)
-                    } else {
-                        if let profileBannerImageUrl = viewModel.currentUser?.profileBannerImageUrl {
-                            KFImage(URL(string: profileBannerImageUrl))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(height: 200)
+                
+                
 
-                                .clipShape(Rectangle())
-
-                        }
-                    }
-                    // If no new image has been selected, display current banner image
-                        Image(uiImage: selectedBannerImage ?? UIImage())
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 200)
-
-                            .clipShape(Rectangle())
-
-                            //.padding(0)
-                        
-                    
-                    // Upload animation
-                    if uploading {
-                        ZStack {
-                            Rectangle()
-                                .frame(height: 200)
-                                .foregroundColor(.black.opacity(0.6))
-                            HStack(spacing: 0) {
-                                ForEach(uploadingMessage.indices, id: \.self) { index in
-                                    Text(uploadingMessage[index])
-                                        .font(.headline)
-                                        .bold()
-                                        .foregroundColor(.white)
-                                        .offset(y: counter == index ? -10 : 0)
-                                        .shadow(radius: 4)
-                                }
-                            }
-                        }
-                        .onReceive(timer) { _ in
-                            withAnimation(.spring()) {
-                                let lastIndex = uploadingMessage.count - 1
-                                
-                                if counter == lastIndex {
-                                    counter = 0
-                                } else {
-                                    counter += 1
-                                }
-                            }
-                        }
-                    }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                // Bio
+                HStack {
+                    Text("Bio")
+                        .font(.headline)
+                    TextField(viewModel.currentUser?.bio ?? "Add a bio.", text: $newBio)
+                        .textInputAutocapitalization(.never)
+                }
+                .padding(.horizontal)
+                Divider()
+                
+                // Website
+                HStack {
+                    Text("Website")
+                        .font(.headline)
+                    TextField(viewModel.currentUser?.bio ?? "Add a website.", text: $newWebsite)
+                        .textInputAutocapitalization(.never)
+                }
+                .padding(.horizontal)
+                Divider()
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                Spacer()
   
-                }
-                .onTapGesture {
-                    showingEditProfilePhotoView = true
-                }
-            
-                
-                
-                
-                
-                TextField(viewModel.currentUser?.bio ?? "Add a bio.", text: $newBio)
-                TextField(viewModel.currentUser?.website ?? "Add a website.", text: $newWebsite)
-                    .autocorrectionDisabled(true)
-                    .textInputAutocapitalization(.never)
             }
-            .fullScreenCover(isPresented: $showingEditProfilePhotoView) {
-                    ImagePicker(image: $selectedBannerImage)
-            
+            // Banner Image Picker
+            .fullScreenCover(isPresented: $pickingBannerImage) {
+                ImagePicker(image: $selectedBannerImage)
+                
             }
+            // Profile Photo Image Picker
+            .fullScreenCover(isPresented: $pickingProfilePhoto) {
+                ImagePicker(image: $selectedProfilePhoto)
+            }
+            
             .toolbar {
                 // Cancel button
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -120,7 +126,7 @@ struct EditProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         viewModel.saveProfileEdits(newBio: newBio, newWebsiteUrl: newWebsite, selectedBannerImage: selectedBannerImage)
-
+                        
                         // Display upload in progress message
                         uploading = true
                         // Dismiss sheet after 4 seconds, so parent view has time to reload profile photo
@@ -137,6 +143,8 @@ struct EditProfileView: View {
                 }
                 
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Edit profile")
         }
     }
 }
@@ -144,5 +152,151 @@ struct EditProfileView: View {
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
         EditProfileView()
+            .environmentObject(AuthViewModel())
     }
+}
+
+
+extension EditProfileView {
+    var bannerImageSelector: some View {
+        ZStack {
+            // If user does not have a banner image
+            if viewModel.currentUser?.profileBannerImageUrl  == nil {
+                // Placeholder - blue rectangle
+                Rectangle()
+                    .frame(height: 170)
+                    .foregroundColor(.twitterBlue)
+            } else { // If user has a banner image
+                if let profileBannerImageUrl = viewModel.currentUser?.profileBannerImageUrl {
+                    KFImage(URL(string: profileBannerImageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .clipShape(Rectangle())
+                    
+                }
+            }
+            
+            // User-selected image
+            Image(uiImage: selectedBannerImage ?? UIImage())
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+            
+                .clipShape(Rectangle())
+            
+            
+            
+            // Upload animation
+            if uploading {
+                ZStack {
+                    Rectangle()
+                        .frame(height: 200)
+                        .foregroundColor(.black.opacity(0.6))
+                    HStack(spacing: 0) {
+                        ForEach(uploadingMessage.indices, id: \.self) { index in
+                            Text(uploadingMessage[index])
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(.white)
+                                .offset(y: counter == index ? -10 : 0)
+                                .shadow(radius: 4)
+                        }
+                    }
+                }
+                .onReceive(timer) { _ in
+                    withAnimation(.spring()) {
+                        let lastIndex = uploadingMessage.count - 1
+                        
+                        if counter == lastIndex {
+                            counter = 0
+                        } else {
+                            counter += 1
+                        }
+                    }
+                }
+            }
+            
+        }
+        .offset(y: -10)
+        .onTapGesture {
+            pickingBannerImage = true
+        }
+    }
+    var profileImageSelector: some View {
+        HStack {
+            ZStack{
+                // If user does not have a profile photo
+                if viewModel.currentUser?.profilePhotoUrl == nil {
+                    ZStack {
+                        Circle()
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 64)
+                        
+                        
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60)
+                            .foregroundColor(.secondary.opacity(0.4))
+                    }
+                } else { // If user has a profile photo
+                    if let photoUrl = viewModel.currentUser?.profilePhotoUrl {
+                        KFImage(URL(string: photoUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            
+                    }
+                }
+                
+                // User selected profile photo
+                Image(uiImage: selectedProfilePhoto ?? UIImage())
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .padding(0)
+            }
+            .onTapGesture {
+                pickingProfilePhoto = true
+            }
+            
+            if uploading {
+                ZStack {
+                    Circle()
+                        .frame(width: 60)
+                        .foregroundColor(.black.opacity(0.6))
+                    HStack(spacing: 0) {
+                        ForEach(uploadingMessage.indices, id: \.self) { index in
+                            Text(uploadingMessage[index])
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                                .offset(y: counter == index ? -10 : 0)
+                                .shadow(radius: 4)
+                        }
+                    }
+                }
+                .onReceive(timer) { _ in
+                    withAnimation(.spring()) {
+                        let lastIndex = uploadingMessage.count - 1
+                        
+                        if counter == lastIndex {
+                            counter = 0
+                        } else {
+                            counter += 1
+                        }
+                    }
+                }
+            }
+            Spacer()
+        }
+        .offset(y: -55)
+        .padding(.horizontal)
+        .padding(.bottom, -55)
+    }
+    
+    
 }
