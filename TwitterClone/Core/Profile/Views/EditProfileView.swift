@@ -22,13 +22,13 @@ struct EditProfileView: View {
     @State private var profilePhoto: Image?
     @State private var selectedProfilePhoto: UIImage?
     @State private var pickingProfilePhoto = false
-
+    
     @State private var profileBannerImage: Image?
     
     @State private var pickingBannerImage = false
     @State private var selectedBannerImage: UIImage?
     
-        
+    
     @State private var uploadingMessage: [String] = "Uploading new banner image...".map { String($0) }
     @State private var counter: Int = 0
     let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect() // for uploading image text animation
@@ -37,32 +37,8 @@ struct EditProfileView: View {
         NavigationView {
             VStack {
                 bannerImageSelector
-
+                
                 profileImageSelector
-                
-                
-                
-                
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 
                 
@@ -71,8 +47,9 @@ struct EditProfileView: View {
                 
                 
                 // CLEAN ME UP!!!
-                Group {
-                    // Bio
+                
+                // Name
+                VStack {
                     HStack {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
@@ -87,10 +64,12 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal)
                     Divider()
-                    
-                    
-                    
-                    // Bio
+                }
+                
+                
+                
+                // Bio
+                VStack{
                     HStack(alignment: .top) {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
@@ -106,10 +85,12 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal)
                     Divider()
-                    
-                    
-                    
-                    // Location
+                }
+                
+                
+                
+                // Location
+                VStack {
                     HStack {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
@@ -124,11 +105,13 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal)
                     Divider()
-                    
-                    
-                    
-                    
-                    // Website
+                }
+                
+                
+                
+                
+                // Website
+                VStack {
                     HStack {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
@@ -143,16 +126,19 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal)
                     Divider()
-                    
-                    
-                    
-                    
-                    // Location
-                    NavigationLink{
-                        Text("Placeholder")
-                    } label: {
+                }
+                
+                
+                
+                
+                
+                
+                // Switch to Professional
+                NavigationLink {
+                    Text("Placeholder")
+                } label: {
+                    VStack {
                         HStack {
-                            
                             Text("Switch to Professional")
                                 .bold()
                             
@@ -160,14 +146,37 @@ struct EditProfileView: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
+                        .frame(height: 20)
                         .padding(.horizontal)
                         Divider()
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    
-                    
                 }
+                .buttonStyle(PlainButtonStyle())
+                
+                // Tips
+                NavigationLink {
+                    Text("Placeholder")
+                } label: {
+                    VStack {
+                        Divider()
+                        HStack {
+                            Text("Tips")
+                                .bold()
+                            
+                            Spacer()
+                            Text("Off")
+                            Image(systemName: "chevron.right")
+                        }
+                        .frame(height: 20)
+                        
+                        .padding(.horizontal)
+                        Divider()
+                    }
+                    .padding(.top, 40)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                
                 
                 
                 
@@ -177,7 +186,7 @@ struct EditProfileView: View {
                 
                 
                 Spacer()
-  
+                
             }
             // Banner Image Picker
             .fullScreenCover(isPresented: $pickingBannerImage) {
@@ -326,7 +335,7 @@ extension EditProfileView {
                             .scaledToFill()
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
-                            
+                        
                     }
                 }
                 
