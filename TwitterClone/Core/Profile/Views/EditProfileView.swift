@@ -56,11 +56,16 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Name")
+                                .font(.callout)
+
                                 .bold()
                             
                         }
-                        TextField(viewModel.currentUser?.bio ?? "Add a name", text: $newName)
+                        TextField(viewModel.currentUser?.name ?? "Add a name", text: $newName)
                             .textInputAutocapitalization(.never)
+                            .font(.callout)
+                            .foregroundColor(.twitterBlue)
+
                     }
                     .padding(.horizontal)
                     Divider()
@@ -76,12 +81,16 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Bio")
+                                .font(.callout)
+
                                 .bold()
                             
                         }
                         TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio, axis: .vertical)
                             .lineLimit(3, reservesSpace: true)
                             .textInputAutocapitalization(.never)
+                            .font(.callout)
+
                     }
                     .padding(.horizontal)
                     Divider()
@@ -97,11 +106,15 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Location")
+                                .font(.callout)
+
                                 .bold()
                             
                         }
-                        TextField(viewModel.currentUser?.bio ?? "Add a location", text: $newLocation)
+                        TextField("Add a location", text: $newLocation)
                             .textInputAutocapitalization(.never)
+                            .font(.callout)
+
                     }
                     .padding(.horizontal)
                     Divider()
@@ -118,11 +131,15 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Website")
+                                .font(.callout)
+
                                 .bold()
                             
                         }
-                        TextField(viewModel.currentUser?.bio ?? "Add a website", text: $newWebsite)
+                        TextField(viewModel.currentUser?.website ?? "Add a website", text: $newWebsite)
                             .textInputAutocapitalization(.never)
+                            .font(.callout)
+
                     }
                     .padding(.horizontal)
                     Divider()
@@ -140,11 +157,15 @@ struct EditProfileView: View {
                     VStack {
                         HStack {
                             Text("Switch to Professional")
+                                .font(.callout)
+
                                 .bold()
                             
                             
                             Spacer()
                             Image(systemName: "chevron.right")
+                                .font(.callout)
+
                         }
                         .frame(height: 20)
                         .padding(.horizontal)
@@ -161,10 +182,13 @@ struct EditProfileView: View {
                         Divider()
                         HStack {
                             Text("Tips")
+                                .font(.callout)
+
                                 .bold()
                             
                             Spacer()
                             Text("Off")
+                                .font(.callout)
                             Image(systemName: "chevron.right")
                         }
                         .frame(height: 20)
