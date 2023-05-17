@@ -90,6 +90,8 @@ struct EditProfileView: View {
                             .lineLimit(3, reservesSpace: true)
                             .textInputAutocapitalization(.never)
                             .font(.callout)
+                            .foregroundColor(.twitterBlue)
+
 
                     }
                     .padding(.horizontal)
@@ -114,6 +116,8 @@ struct EditProfileView: View {
                         TextField("Add a location", text: $newLocation)
                             .textInputAutocapitalization(.never)
                             .font(.callout)
+                            .foregroundColor(.twitterBlue)
+
 
                     }
                     .padding(.horizontal)
@@ -132,13 +136,14 @@ struct EditProfileView: View {
                                 .foregroundColor(.clear)
                             Text("Website")
                                 .font(.callout)
-
                                 .bold()
                             
                         }
                         TextField(viewModel.currentUser?.website ?? "Add a website", text: $newWebsite)
                             .textInputAutocapitalization(.never)
                             .font(.callout)
+                            .foregroundColor(.twitterBlue)
+
 
                     }
                     .padding(.horizontal)
