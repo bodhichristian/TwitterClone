@@ -93,8 +93,48 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func saveProfileEdits(newBio: String?, newWebsiteUrl: String?, selectedBannerImage: UIImage?) {
+    func saveProfileEdits(newName: String?, newBio: String?, newLocation: String?, newWebsiteUrl: String?, selectedBannerImage: UIImage?) {
         guard let uid = userSession?.uid else { return }
+        
+        if newName?.isEmpty == false {
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["name": newName]) { error in
+                    if let error = error {
+                        print("Error updating name: \(error.localizedDescription)")
+                    }
+                }
+        }
+        
+        if newBio?.isEmpty == false {
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["bio": newBio]) { error in
+                    if let error = error {
+                        print("Error updating bio: \(error.localizedDescription)")
+                    }
+                }
+        }
+        
+        if newWebsiteUrl?.isEmpty == false {
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["website": newWebsiteUrl]) { error in
+                    if let error = error {
+                        print("Error updating bio: \(error.localizedDescription)")
+                    }
+                }
+        }
+        
+        if newLocation?.isEmpty == false {
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["location": newLocation]) { error in
+                    if let error = error {
+                        print("Error updating location: \(error.localizedDescription)")
+                    }
+                }
+        }
         
         if let profileBannerImage = selectedBannerImage {
             ImageUploader.uploadImage(image: profileBannerImage) { profileBannerImage in
@@ -109,25 +149,6 @@ class AuthViewModel: ObservableObject {
             }
         }
         
-        if let newBio = newBio {
-            Firestore.firestore().collection("users")
-                .document(uid)
-                .updateData(["bio": newBio]) { error in
-                    if let error = error {
-                        print("Error updating bio: \(error.localizedDescription)")
-                    }
-                }
-        }
-        
-        if let newWebsite = newWebsiteUrl {
-            Firestore.firestore().collection("users")
-                .document(uid)
-                .updateData(["website": newWebsiteUrl]) { error in
-                    if let error = error {
-                        print("Error updating bio: \(error.localizedDescription)")
-                    }
-                }
-        }
         self.fetchUser()
     }
     

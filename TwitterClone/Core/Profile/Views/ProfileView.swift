@@ -162,10 +162,12 @@ extension ProfileView {
             // Details
             HStack {
                 // Location
-                HStack(spacing: 2) {
-                    Image(systemName: "mappin.and.ellipse")
-                    Text("New Republic")
-                    
+                if let location = viewModel.user.location {
+                    HStack(spacing: 2) {
+                        Image(systemName: "mappin.and.ellipse")
+                        Text(location)
+                        
+                    }
                 }
                 // Website
                 if let website = viewModel.user.website {

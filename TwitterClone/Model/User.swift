@@ -18,6 +18,7 @@ struct User: Identifiable, Decodable {
     let profileBannerImageUrl: String?
     
     let bio: String?
+    let location: String?
     let website: String?
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id  }
@@ -31,6 +32,7 @@ struct User: Identifiable, Decodable {
         profilePhotoUrl: nil,
         profileBannerImageUrl: nil,
         bio: "For if knowledge is power, then a god am I! Was that over the top? I can never tell.",
+        location: "Gotham",
         website: "www.theriddler.com"
     )
     // Empty User for missing User objects
@@ -42,6 +44,7 @@ struct User: Identifiable, Decodable {
         profilePhotoUrl: nil,
         profileBannerImageUrl: nil,
         bio: "" ,
+        location: "Nowhere",
         website: ""
     )
 }
