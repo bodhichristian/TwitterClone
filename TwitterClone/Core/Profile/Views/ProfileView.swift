@@ -233,6 +233,7 @@ extension ProfileView {
             LazyVStack {
                 ForEach(viewModel.tweets(forFilter: self.selectedFilter)) { tweet in
                     TweetRowView(tweet: tweet)
+                        
                 }
             }
         }
