@@ -31,6 +31,9 @@ struct ProfileView: View {
             
             Spacer()
         }
+        .onAppear {
+            viewModel.fetchLikedTweets()
+        }
         .sheet(isPresented: $showingEditProfileView) {
             EditProfileView()
         }
