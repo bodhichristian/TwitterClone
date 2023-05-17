@@ -283,7 +283,7 @@ struct EditProfileView: View {
                 // Save button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.saveProfileEdits(newName: newName, newBio: newBio, newLocation: newLocation, newWebsiteUrl: newWebsite, selectedBannerImage: selectedBannerImage)
+                        viewModel.saveProfileEdits(newName: newName, newBio: newBio, newLocation: newLocation, newWebsiteUrl: newWebsite, selectedBannerImage: selectedBannerImage, selectedProfilePhoto: selectedProfilePhoto)
                         
                         // Display upload in progress message
                         updating = true
