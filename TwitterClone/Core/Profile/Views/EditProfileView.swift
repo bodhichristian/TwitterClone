@@ -79,7 +79,7 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Name")
-                                .font(.headline)
+                                .bold()
                             
                         }
                         TextField(viewModel.currentUser?.bio ?? "Add a name", text: $newName)
@@ -91,16 +91,17 @@ struct EditProfileView: View {
                     
                     
                     // Bio
-                    HStack {
+                    HStack(alignment: .top) {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Bio")
-                                .font(.headline)
+                                .bold()
                             
                         }
-                        TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio)
+                        TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio, axis: .vertical)
+                            .lineLimit(3, reservesSpace: true)
                             .textInputAutocapitalization(.never)
                     }
                     .padding(.horizontal)
@@ -115,7 +116,7 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Location")
-                                .font(.headline)
+                                .bold()
                             
                         }
                         TextField(viewModel.currentUser?.bio ?? "Add a location", text: $newLocation)
@@ -134,7 +135,7 @@ struct EditProfileView: View {
                                 .frame(width: 70, height: 20)
                                 .foregroundColor(.clear)
                             Text("Website")
-                                .font(.headline)
+                                .bold()
                             
                         }
                         TextField(viewModel.currentUser?.bio ?? "Add a website", text: $newWebsite)
@@ -142,15 +143,31 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal)
                     Divider()
+                    
+                    
+                    
+                    
+                    // Location
+                    NavigationLink{
+                        Text("Placeholder")
+                    } label: {
+                        HStack {
+                            
+                            Text("Switch to Professional")
+                                .bold()
+                            
+                            
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.horizontal)
+                        Divider()
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    
+                    
                 }
-                
-                
-
-                
-                
-                
-                
-                
                 
                 
                 
@@ -284,6 +301,7 @@ extension EditProfileView {
             pickingBannerImage = true
         }
     }
+    
     var profileImageSelector: some View {
         HStack {
             ZStack{
@@ -319,6 +337,18 @@ extension EditProfileView {
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
                     .padding(0)
+                
+                Circle()
+                    .frame(width: 60, height: 60)
+                    .foregroundColor(.black.opacity(0.3))
+                
+                
+                // Camera icon overlay
+                Image(systemName: "camera")
+                    .font(.title).bold()
+                    .foregroundColor(.white)
+                
+                
             }
             .onTapGesture {
                 pickingProfilePhoto = true
