@@ -1,5 +1,7 @@
 # TwitterClone
 
+![TwitterClone Showcase May 23 single image 001](https://github.com/bodhichristian/TwitterClone/assets/110639779/b2225dc1-5ffe-4691-abb7-075ca4f8e107)
+
 A functional clone of the app almost formerly knwon as Twitter. The interface is built entirely with SwiftUI, uses Firebase for authentication and storing user data, and follows MVVM archtitecture.
 
 <b>Onboarding and Authentication</b>
