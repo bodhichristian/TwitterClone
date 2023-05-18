@@ -4,6 +4,10 @@ A functional clone of the app almost formerly knwon as Twitter. The interface is
 
 <b>Onboarding and Authentication</b>
 ![TwitterClone Showcase May 23 001](https://github.com/bodhichristian/TwitterClone/assets/110639779/352eb135-c49b-4d8c-9f10-6fb5c0ea39ff)
+- Firebase is used to authenticate user sessions.
+- Users may register for an account, and log in using email and password.
+- Conditionally formatted buttons guide the user through the onboarding process.
+
 
 <b>Feed, Side Menu, Compose Tweet</b>
 ![TwitterClone Showcase May 23 002](https://github.com/bodhichristian/TwitterClone/assets/110639779/112995fe-0eca-4b08-889b-458dc81ddc5d)
