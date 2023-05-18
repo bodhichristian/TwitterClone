@@ -23,7 +23,7 @@ A functional clone of the app almost formerly knwon as Twitter. The interface is
 - User may tap on profile photo to upload to profile photo, outside of the Edit Profile view.
 
 Future updates:
-- Sign-in with Apple/Google
+- Additional sign-in methods
 - Add images to tweets
 - Implement Follower/Following logic 
 - Retweets and DMs
