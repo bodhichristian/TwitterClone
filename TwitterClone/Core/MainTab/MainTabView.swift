@@ -16,6 +16,8 @@ struct MainTabView: View {
     @State private var showingSideMenu = false
     @State private var showingNewTweetView = false
     
+
+    
     var body: some View {
         NavigationView{
             ZStack(alignment: .topLeading) {

@@ -12,6 +12,11 @@ struct SideMenuView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var viewModel: AuthViewModel
     
+    @State private var showingLogOutAlert = false
+    @State private var logOutAlertMessage = Text("Are you sure you want to log out?")
+    @State private var logOutAlertTitle = Text("Log Out")
+    
+    
     let image = TwitterBlueLogo()
     
     var body: some View {
@@ -36,6 +41,21 @@ struct SideMenuView: View {
         .padding(.horizontal)
         .background(colorScheme == .dark ? .black : .white)
         .frame(width: 320)
+        
+        .alert(isPresented: $showingLogOutAlert, content: {
+            Alert(title: logOutAlertTitle,
+                  message: logOutAlertMessage,
+                  primaryButton: .default(Text("Go back")),
+                  secondaryButton: .destructive(
+                    Text("Log out"),
+                    action: {
+                        viewModel.logOut()
+                    }
+                  )
+                  
+            )
+        })
+        
     }
 }
 
@@ -133,7 +153,7 @@ extension SideMenuView {
                 if tool == .settingsAndSupport {
                     // Log Out Button
                     Button {
-                        viewModel.logOut()
+                        showingLogOutAlert = true
                     } label: {
                         HStack {
                             Label("Log Out", systemImage: "door.right.hand.open")

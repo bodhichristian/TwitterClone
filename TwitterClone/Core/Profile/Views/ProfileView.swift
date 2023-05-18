@@ -15,7 +15,7 @@ struct ProfileView: View {
     @State private var showingEditProfileView = false
     @State private var showingEditProfilePhotoView = false
     @Namespace var animation // For animating blue bar in tweetFilter
-    
+        
     init(user: User ) {
         self.viewModel = ProfileViewModel(user: user)
         self.viewModel.fetchUserTweets()
@@ -233,7 +233,6 @@ extension ProfileView {
             LazyVStack {
                 ForEach(viewModel.tweets(forFilter: self.selectedFilter)) { tweet in
                     TweetRowView(tweet: tweet)
-                        
                 }
             }
         }
