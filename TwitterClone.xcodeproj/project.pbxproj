@@ -293,8 +293,8 @@
 			children = (
 				AA05EA0F29F80F3500F736CF /* Utilities */,
 				AAAFCC2629E84A6400CCA835 /* Extensions */,
-				AAAFCC2529E84A6200CCA835 /* Model */,
-				AAAFCC2429E84A5F00CCA835 /* Service */,
+				AAAFCC2529E84A6200CCA835 /* Models */,
+				AAAFCC2429E84A5F00CCA835 /* Services */,
 				AAAFCC2029E84A4D00CCA835 /* Core */,
 				AAAFCC0D29E849B800CCA835 /* TwitterClone.swift */,
 				AAAFCC0F29E849B800CCA835 /* ContentView.swift */,
@@ -318,36 +318,36 @@
 			children = (
 				AAAFCC2729E84A7100CCA835 /* Components */,
 				AA841C1329F0AED200B09A56 /* Authentication */,
-				AA841C0A29F00DA000B09A56 /* NewTweet */,
+				AAAFCC3129E857BD00CCA835 /* MainTab */,
 				AA22853629EAC565005CB22A /* SideMenu */,
+				AA841C0A29F00DA000B09A56 /* NewTweet */,
 				AAAFCC3729E85B4600CCA835 /* Profile */,
+				AAAFCC2829E84A7900CCA835 /* Feed */,
 				AAAFCC3629E85B2D00CCA835 /* Explore */,
 				AAAFCC3529E85B2B00CCA835 /* Notifications */,
 				AAAFCC3829E85B6100CCA835 /* Communities */,
 				AAAFCC3429E85B2800CCA835 /* Messages */,
-				AAAFCC3129E857BD00CCA835 /* MainTab */,
-				AAAFCC2829E84A7900CCA835 /* Feed */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		AAAFCC2429E84A5F00CCA835 /* Service */ = {
+		AAAFCC2429E84A5F00CCA835 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				AA65E9D429F8CBC500052F5F /* ImageUploader.swift */,
 				AAA11C5229F95A9C00DD0837 /* UserService.swift */,
 				AA5FA9F72A0031CD00D894A3 /* TweetService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		AAAFCC2529E84A6200CCA835 /* Model */ = {
+		AAAFCC2529E84A6200CCA835 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AAA11C5429F95C5D00DD0837 /* User.swift */,
 				AA5FA9FD2A04511000D894A3 /* Tweet.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		AAAFCC2629E84A6400CCA835 /* Extensions */ = {
