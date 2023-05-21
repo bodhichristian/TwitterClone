@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 struct TweetService {
-    
+    // Upload tweet
     func uploadTweet(body: String, completion: @escaping(Bool) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -49,7 +49,7 @@ struct TweetService {
     func fetchUserTweets(uid: String, completion: @escaping([Tweet]) -> Void) {
         Firestore.firestore().collection("tweets")
             .whereField("uid", isEqualTo: uid)
-
+        
             .getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents else { return }
                 let tweets = documents.compactMap { try? $0.data(as: Tweet.self) }
@@ -61,11 +61,7 @@ struct TweetService {
             }
     }
     
-    
-}
-
-// MARK: Likes
-extension TweetService {
+    // MARK: Likes
     func likeTweet(_ tweet: Tweet, completion: @escaping() -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let tweetID = tweet.id else { return }

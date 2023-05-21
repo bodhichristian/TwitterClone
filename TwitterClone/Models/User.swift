@@ -29,7 +29,7 @@ struct User: Identifiable, Decodable {
         email: "theriddler@dc.com",
         name: "The Riddler",
         phoneNumber: "999-999-9999",
-        profilePhotoUrl: nil,
+        profilePhotoUrl: "https://m0vie.files.wordpress.com/2010/08/riddler.jpg",
         profileBannerImageUrl: nil,
         bio: "For if knowledge is power, then a god am I! Was that over the top? I can never tell.",
         location: "Gotham",

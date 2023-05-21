@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Placeholder UI elements for Sign-In with Apple/Google
 struct AuthenticationOptionButton: View {
     let title: String
     let imageName: String
@@ -22,7 +23,6 @@ struct AuthenticationOptionButton: View {
                     .foregroundColor(.white)
                     .frame(width: 320, height: 44)
 
-                
                 HStack(spacing: 14) {
                     Image(imageName)
                         .resizable()
@@ -32,13 +32,9 @@ struct AuthenticationOptionButton: View {
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .offset(x: imageName == "" ? -14 : 0 )
-
                 }
             }
             .foregroundColor(.black)
-//            .padding(.vertical, 4)
-//            .padding(.horizontal)
-        
     }
 }
 

@@ -69,7 +69,12 @@ extension NewTweetView {
             Spacer()
             
             Button {
-                newTweetVM.uploadTweet(withBody: tweetBody)
+                
+                // FIX MEEEEEEEEEEE
+                
+                newTweetVM.uploadTweet(withBody: tweetBody, tweetImage: selectedImage)
+                
+                
             } label: {
                 Text("Tweet")
                     .font(.subheadline)
@@ -136,6 +141,7 @@ extension NewTweetView {
                     .lineLimit(selectedImage != nil ? 4 : 100)
                     .padding(.vertical, 10)
                     .padding(.trailing)
+
                 
                 // Tweet image
                 ScrollView {
@@ -160,7 +166,6 @@ extension NewTweetView {
             
         }
     }
-
     // Reply persmissions
     var replyPersmissionsView: some View {
         HStack {
@@ -172,7 +177,7 @@ extension NewTweetView {
         .font(.caption)
         .foregroundColor(.twitterBlue)
     }
-    
+    // Tweet extras buttons
     var tweetExtrasView: some View {
         HStack(spacing: 20) {
             Image(systemName: "mic.fill.badge.plus")
@@ -182,8 +187,8 @@ extension NewTweetView {
             Button {
                 showingImagePicker = true
             } label:{
-            Image(systemName: "photo")
-        }
+                Image(systemName: "photo")
+            }
             
             Image(systemName: "checklist")
             

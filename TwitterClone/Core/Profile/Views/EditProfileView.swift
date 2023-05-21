@@ -120,7 +120,7 @@ struct EditProfileView: View {
                                     .bold()
                                 
                             }
-                            TextField("Add a location", text: $newLocation)
+                            TextField(viewModel.currentUser?.location ?? "Add a location", text: $newLocation)
                                 .textInputAutocapitalization(.never)
                                 .font(.callout)
                                 .foregroundColor(.twitterBlue)

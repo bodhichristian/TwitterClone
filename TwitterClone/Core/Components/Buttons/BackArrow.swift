@@ -13,6 +13,7 @@ struct BackArrow: View {
             Circle()
                 .frame(width: 34)
                 .foregroundStyle(.black.opacity(0.3))
+            
             Image(systemName: "arrow.left")
                 .foregroundColor(.white).fontWeight(.medium)
         }

@@ -20,15 +20,17 @@ struct UserRowView: View {
                 .clipShape(Circle())
                 .frame(width: 45, height: 45)
                 .foregroundColor(.twitterBlue)
+            
             // Display name, username
             VStack(alignment: .leading, spacing: 2) {
+                // Name
                 HStack(spacing: 0){
                     Text(user.name)
                         .bold()
                     BlueCheck()
                         .padding(.horizontal, 4)
-                       
                 }
+                // Username
                 Text("@\(user.username)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
