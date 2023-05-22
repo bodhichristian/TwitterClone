@@ -32,9 +32,10 @@ struct NewTweetView: View {
             
             tweetExtrasView // Tweet extras buttons
         }
-        .onAppear() { // Focus
+        .onAppear() { // Focus tweet editor by default
             focusTweetEditor = true
         }
+        // Select tweet image
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $selectedImage)
         }
