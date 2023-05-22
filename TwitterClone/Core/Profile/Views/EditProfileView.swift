@@ -38,204 +38,22 @@ struct EditProfileView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    bannerImageSelector
+                    bannerImageSelector // Reveal ImagePicker on tap gesture
                     
-                    profileImageSelector
+                    profileImageSelector // Reveal ImagePicker on tap gesture
                     
+                    profileDetailsForm // Name, @username, location, website
                     
-                    
-                    Divider()
-                        .padding(.top)
-                    
-                    
-                    // CLEAN ME UP!!!
-                    
-                    // Name
-                    VStack {
-                        HStack {
-                            ZStack(alignment: .bottomLeading) {
-                                Rectangle()
-                                    .frame(width: 70, height: 20)
-                                    .foregroundColor(.clear)
-                                Text("Name")
-                                    .font(.callout)
-                                    .bold()
-                                
-                            }
-                            TextField(viewModel.currentUser?.name ?? "Add a name", text: $newName)
-                                .textInputAutocapitalization(.never)
-                                .font(.callout)
-                                .foregroundColor(.twitterBlue)
-                                .onChange(of: newName) { _ in
-                                    editsHaveBeenMade = true
-                                }
-                            
-                        }
-                        .padding(.horizontal)
-                        Divider()
-                    }
-                    
-                    
-                    
-                    // Bio
-                    VStack{
-                        HStack(alignment: .top) {
-                            ZStack(alignment: .bottomLeading) {
-                                Rectangle()
-                                    .frame(width: 70, height: 20)
-                                    .foregroundColor(.clear)
-                                Text("Bio")
-                                    .font(.callout)
-                                
-                                    .bold()
-                                
-                            }
-                            TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio, axis: .vertical)
-                                .lineLimit(3, reservesSpace: true)
-                                .textInputAutocapitalization(.never)
-                                .font(.callout)
-                                .foregroundColor(.twitterBlue)
-                                .onChange(of: newBio) { _ in
-                                    editsHaveBeenMade = true
-                                }
-                            
-                            
-                        }
-                        .padding(.horizontal)
-                        Divider()
-                    }
-                    
-                    
-                    
-                    // Location
-                    VStack {
-                        HStack {
-                            ZStack(alignment: .bottomLeading) {
-                                Rectangle()
-                                    .frame(width: 70, height: 20)
-                                    .foregroundColor(.clear)
-                                Text("Location")
-                                    .font(.callout)
-                                
-                                    .bold()
-                                
-                            }
-                            TextField(viewModel.currentUser?.location ?? "Add a location", text: $newLocation)
-                                .textInputAutocapitalization(.never)
-                                .font(.callout)
-                                .foregroundColor(.twitterBlue)
-                                .onChange(of: newLocation) { _ in
-                                    editsHaveBeenMade = true
-                                }
-                            
-                        }
-                        .padding(.horizontal)
-                        Divider()
-                    }
-                    
-                    
-                    
-                    
-                    // Website
-                    VStack {
-                        HStack {
-                            ZStack(alignment: .bottomLeading) {
-                                Rectangle()
-                                    .frame(width: 70, height: 20)
-                                    .foregroundColor(.clear)
-                                Text("Website")
-                                    .font(.callout)
-                                    .bold()
-                                
-                            }
-                            TextField(viewModel.currentUser?.website ?? "Add a website", text: $newWebsite)
-                                .textInputAutocapitalization(.never)
-                                .font(.callout)
-                                .foregroundColor(.twitterBlue)
-                                .onChange(of: newLocation) { _ in
-                                    editsHaveBeenMade = true
-                                }
-                            
-                            
-                        }
-                        .padding(.horizontal)
-                        Divider()
-                    }
-                    
-                    
-                    
-                    
-                    
-                    
-                    // Switch to Professional
-                    NavigationLink {
-                        Text("Placeholder")
-                    } label: {
-                        VStack {
-                            HStack {
-                                Text("Switch to Professional")
-                                    .font(.callout)
-                                
-                                    .bold()
-                                
-                                
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .font(.callout)
-                                
-                            }
-                            .frame(height: 20)
-                            .padding(.horizontal)
-                            Divider()
-                        }
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    // Tips
-                    NavigationLink {
-                        Text("Placeholder")
-                    } label: {
-                        VStack {
-                            Divider()
-                            HStack {
-                                Text("Tips")
-                                    .font(.callout)
-                                
-                                    .bold()
-                                
-                                Spacer()
-                                Text("Off")
-                                    .font(.callout)
-                                Image(systemName: "chevron.right")
-                            }
-                            .frame(height: 20)
-                            
-                            .padding(.horizontal)
-                            Divider()
-                        }
-                        .padding(.top, 40)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    additionalTools // Switch to professional, Tips
+ 
                     Spacer()
-                    
                 }
-                // Upload animation
-                if updating {
-                    
-                    Rectangle()
+                
+                if updating { // Display upload animation, while edits update
+                    Rectangle() // Dark, transparent overlay
                         .ignoresSafeArea()
                         .foregroundColor(.black.opacity(0.6))
-                    HStack(spacing: 0) {
+                    HStack(spacing: 0) { // Animating text
                         ForEach(updatingProfileMessage.indices, id: \.self) { index in
                             Text(updatingProfileMessage[index])
                                 .font(.headline)
@@ -245,7 +63,6 @@ struct EditProfileView: View {
                                 .shadow(radius: 4)
                         }
                     }
-                    
                     .onReceive(timer) { _ in
                         withAnimation(.spring()) {
                             let lastIndex = updatingProfileMessage.count - 1
@@ -268,10 +85,8 @@ struct EditProfileView: View {
             .fullScreenCover(isPresented: $pickingProfilePhoto) {
                 ImagePicker(image: $selectedProfilePhoto)
             }
-            
             .toolbar {
-                // Cancel button
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) { // Cancel button
                     Button {
                         dismiss()
                     } label: {
@@ -280,27 +95,26 @@ struct EditProfileView: View {
                     }
                 }
                 
-                // Save button
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) { // Save button
                     Button {
-                        viewModel.saveProfileEdits(newName: newName, newBio: newBio, newLocation: newLocation, newWebsiteUrl: newWebsite, selectedBannerImage: selectedBannerImage, selectedProfilePhoto: selectedProfilePhoto)
-                        
-                        // Display upload in progress message
-                        updating = true
-                        // Dismiss sheet after 4 seconds, so parent view has time to reload profile photo
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                            // Refresh user data
-                            viewModel.fetchUser()
-                            // Dismiss sheet
-                            dismiss()
+                        viewModel.saveProfileEdits(newName: newName,
+                                                   newBio: newBio,
+                                                   newLocation: newLocation,
+                                                   newWebsiteUrl: newWebsite,
+                                                   selectedBannerImage: selectedBannerImage,
+                                                   selectedProfilePhoto: selectedProfilePhoto)
+                        updating = true // Display upload in progress message
+                        // Delay dismissal to buffer for updating images
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { // Dismiss sheet after 4 seconds
+                            viewModel.fetchUser() // Refresh user data
+                            dismiss() // Dismiss sheet
                         }
                     } label: {
                         Text("Save")
-                            .foregroundColor(editsHaveBeenMade ? .twitterBlue : .clear)
+                            .foregroundColor(editsHaveBeenMade ? .twitterBlue : .clear) // Visible if edits hae been made
                     }
-                    .disabled(editsHaveBeenMade == false)
+                    .disabled(editsHaveBeenMade == false) // Functional if edits have been made
                 }
-                
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Edit profile")
@@ -315,8 +129,8 @@ struct EditProfileView_Previews: PreviewProvider {
     }
 }
 
-
 extension EditProfileView {
+    // Reveal ImagePicker on tap gesture
     var bannerImageSelector: some View {
         ZStack {
             // If user does not have a banner image
@@ -352,7 +166,7 @@ extension EditProfileView {
             editsHaveBeenMade = true
         }
     }
-    
+    // Reveal ImagePicker on tap gesture
     var profileImageSelector: some View {
         HStack {
             ZStack{
@@ -412,6 +226,163 @@ extension EditProfileView {
         .padding(.horizontal)
         .padding(.bottom, -55)
     }
-    
-    
+    // Name, @username, location, website
+    var profileDetailsForm: some View {
+        VStack {
+            Divider()
+                .padding(.top)
+            
+            // Name
+            VStack {
+                HStack {
+                    ZStack(alignment: .bottomLeading) { // Prompt
+                        Rectangle()
+                            .frame(width: 70, height: 20)
+                            .foregroundColor(.clear)
+                        Text("Name")
+                            .font(.callout)
+                            .bold()
+                    }
+                    // User input
+                    TextField(viewModel.currentUser?.name ?? "Add a name", text: $newName)
+                        .textInputAutocapitalization(.never)
+                        .font(.callout)
+                        .foregroundColor(.twitterBlue)
+                        .onChange(of: newName) { _ in
+                            editsHaveBeenMade = true
+                        }
+                }
+                .padding(.horizontal)
+                
+                Divider()
+            }
+            // Bio
+            VStack{
+                HStack(alignment: .top) {
+                    ZStack(alignment: .bottomLeading) { // Prompt
+                        Rectangle()
+                            .frame(width: 70, height: 20)
+                            .foregroundColor(.clear)
+                        Text("Bio")
+                            .font(.callout)
+                            .bold()
+                    }
+                    // User input
+                    TextField(viewModel.currentUser?.bio ?? "Add a bio", text: $newBio, axis: .vertical)
+                        .lineLimit(3, reservesSpace: true)
+                        .textInputAutocapitalization(.never)
+                        .font(.callout)
+                        .foregroundColor(.twitterBlue)
+                        .onChange(of: newBio) { _ in
+                            editsHaveBeenMade = true
+                        }
+                }
+                .padding(.horizontal)
+                
+                Divider()
+            }
+            // Location
+            VStack {
+                HStack {
+                    ZStack(alignment: .bottomLeading) { // Prompt
+                        Rectangle()
+                            .frame(width: 70, height: 20)
+                            .foregroundColor(.clear)
+                        Text("Location")
+                            .font(.callout)
+                            .bold()
+                    }
+                    // User input
+                    TextField(viewModel.currentUser?.location ?? "Add a location", text: $newLocation)
+                        .textInputAutocapitalization(.never)
+                        .font(.callout)
+                        .foregroundColor(.twitterBlue)
+                        .onChange(of: newLocation) { _ in
+                            editsHaveBeenMade = true
+                        }
+                }
+                .padding(.horizontal)
+                
+                Divider()
+            }
+            // Website
+            VStack {
+                HStack {
+                    ZStack(alignment: .bottomLeading) { // Prompt
+                        Rectangle()
+                            .frame(width: 70, height: 20)
+                            .foregroundColor(.clear)
+                        Text("Website")
+                            .font(.callout)
+                            .bold()
+                        
+                    }
+                    // User input
+                    TextField(viewModel.currentUser?.website ?? "Add a website", text: $newWebsite)
+                        .textInputAutocapitalization(.never)
+                        .font(.callout)
+                        .foregroundColor(.twitterBlue)
+                        .onChange(of: newLocation) { _ in
+                            editsHaveBeenMade = true
+                        }
+                    
+                    
+                }
+                .padding(.horizontal)
+                Divider()
+            }        }
+    }
+    // Switch to professional, Tips
+    var additionalTools: some View {
+        VStack {
+            // Switch to Professional
+            NavigationLink { // Placeholder view
+                Text("Placeholder")
+            } label: {
+                VStack {
+                    HStack { // Tool name
+                        Text("Switch to Professional")
+                            .font(.callout)
+                            .bold()
+                        
+                        Spacer()
+                        // Button label
+                        Image(systemName: "chevron.right")
+                            .font(.callout)
+                    }
+                    .frame(height: 20)
+                    .padding(.horizontal)
+                    
+                    Divider()
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            
+            // Tips
+            NavigationLink {
+                Text("Placeholder")
+            } label: {
+                VStack {
+                    Divider()
+                    HStack { // Tool name
+                        Text("Tips")
+                            .font(.callout)
+                            .bold()
+                        
+                        Spacer()
+                        // Button label
+                        Text("Off")
+                            .font(.callout)
+                        Image(systemName: "chevron.right")
+                    }
+                    .frame(height: 20)
+                    
+                    .padding(.horizontal)
+                    Divider()
+                }
+                .padding(.top, 40)
+            }
+            .buttonStyle(PlainButtonStyle())
+        }
+    }
 }
