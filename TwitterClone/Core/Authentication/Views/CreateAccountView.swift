@@ -42,9 +42,9 @@ struct CreateAccountView: View {
                 .fontWeight(.semibold)
                 .padding(.top)
             
-            registrationForm
+            registrationForm // Input user details
             
-            createAccountButton
+            createAccountButton // Submit registration
         }
         .toolbar {
             // Cancel Button
@@ -63,10 +63,8 @@ struct CreateAccountView: View {
                     .padding(8)
             }
         }
-        // Maintains header shape
-        .navigationBarTitleDisplayMode(.inline)
-        // Hides default Navigation Back Button
-        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline) // Maintains header shape
+        .navigationBarBackButtonHidden() // Hides default Navigation Back Button
 
     }
 }

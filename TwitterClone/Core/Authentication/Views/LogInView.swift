@@ -32,10 +32,10 @@ struct LogInView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         .padding(.bottom, 20)
-                    // UserID and password
-                    credentialEntry
-                    // Log in and Forgot Password?
-                    logInButtons
+                    
+                    credentialEntry // UserID and password
+                    
+                    logInButtons // Log in and Forgot Password?
                 }
             .padding()
             .toolbar {
@@ -59,7 +59,6 @@ struct LogInView: View {
             .navigationBarTitleDisplayMode(.inline)
             // Hides default Navigation Back Button
             .navigationBarBackButtonHidden()
-
     }
 }
 
@@ -71,6 +70,7 @@ struct LogInView_Previews: PreviewProvider {
 
 
 extension LogInView {
+    // Email and password
     var credentialEntry: some View {
         VStack{
             // Phone, email, or @username
@@ -86,7 +86,7 @@ extension LogInView {
                 .padding(0)
         }
     }
-    
+    // Log in, Forgot Password
     var logInButtons: some View {
         HStack{
             Spacer()

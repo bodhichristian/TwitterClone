@@ -16,49 +16,42 @@ struct SideMenuView: View {
     @State private var logOutAlertMessage = Text("Are you sure you want to log out?")
     @State private var logOutAlertTitle = Text("Log Out")
     
-    
     let image = TwitterBlueLogo()
     
     var body: some View {
-        VStack(alignment: .leading){
-            accountOverview
-            featuresView
-            
-            Divider()
-                .padding(.horizontal, 10)
-                .padding(.vertical)
-            
-            toolsView
-            Spacer()
-            // Theme
-            HStack {
-                Image(systemName: colorScheme == .dark ? "moon.stars" : "sun.min")
-                    .font(.title2)
+        HStack {
+            VStack(alignment: .leading){
+                accountOverview // Profile photo, network, add
+                featuresView
+                
+                Divider()
+                    .padding(.horizontal, 10)
+                    .padding(.vertical)
+                
+                toolsView
+                
                 Spacer()
+                
+                themeIndicator
             }
-            .padding(.bottom, 10)
-        }
-        .padding(.horizontal)
-        .background(colorScheme == .dark ? .black : .white)
-        .frame(width: 320)
-        
-        .alert(isPresented: $showingLogOutAlert, content: {
-            Alert(title: logOutAlertTitle,
-                  message: logOutAlertMessage,
-                  primaryButton: .default(Text("Go back")),
-                  secondaryButton: .destructive(
-                    Text("Log out"),
-                    action: {
-                        viewModel.logOut()
-                    }
-                  )
-                  
-            )
+            .padding(.horizontal)
+            .background(colorScheme == .dark ? .black : .white)
+            .frame(width: 320)
+            
+            .alert(isPresented: $showingLogOutAlert, content: {
+                Alert(title: logOutAlertTitle,
+                      message: logOutAlertMessage,
+                      primaryButton: .default(Text("Go back")),
+                      secondaryButton: .destructive(
+                        Text("Log out"),
+                        action: {
+                            viewModel.logOut()
+                        }))
         })
-        
+            Spacer()
+        }
     }
 }
-
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
@@ -89,11 +82,11 @@ extension SideMenuView {
                                 .frame(width: 32, height: 32)
                                 .clipShape(Circle())
                                 .padding(.bottom, 5)
-                                
+                            
                         }
                     }
                 }
-
+                
                 // Display name and blue check
                 if let currentUser = viewModel.currentUser {
                     HStack(spacing: 4) {
@@ -121,12 +114,13 @@ extension SideMenuView {
         }
         .padding(.bottom)
     }
+    
     var featuresView: some View {
         ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
             NavigationLink {
                 switch label {
                 case .profile : ProfileView(user: viewModel.currentUser ?? User.empty)
-                // Add a case for each SideMenuFeaturesViewModel cases
+                    // Add a case for each SideMenuFeaturesViewModel cases
                     
                 default: Text(label.title)
                 }
@@ -143,7 +137,7 @@ extension SideMenuView {
                 .frame(height: 48)
             }
             .buttonStyle(PlainButtonStyle())
-
+            
         }
     }
     
@@ -177,6 +171,15 @@ extension SideMenuView {
             }
         }
         .buttonStyle(PlainButtonStyle())
-
+        
+    }
+    
+    var themeIndicator: some View {
+        HStack {
+            Image(systemName: colorScheme == .dark ? "moon.stars" : "sun.min")
+                .font(.title2)
+            Spacer()
+        }
+        .padding(.bottom, 10)
     }
 }

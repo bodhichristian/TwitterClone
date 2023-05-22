@@ -12,11 +12,11 @@ struct SignedOutView: View {
     
     var body: some View {
         VStack {
-            createAccountOptions
+            createAccountOptions // Continue with Apple/Google, Create Account
             
-            termsView
+            termsView // Terms prompt
             
-            logInPrompt
+            logInPrompt // Log in for established users
  
         }
     }
@@ -31,6 +31,39 @@ struct SignedOutView_Previews: PreviewProvider {
 }
 
 extension SignedOutView {
+    var createAccountOptions: some View {
+        VStack {
+            Spacer()
+            
+            VStack(alignment: .leading){
+                Text("Introduce yourself. Join Twitter to create your Profile.")
+                    .font(.title2)
+                    .bold()
+            }
+            
+            Spacer()
+            
+            Button {
+                // Action
+            } label: {
+                AuthenticationOptionButton(title: "Continue with Apple", imageName: "appleLogo")
+            }
+            Button {
+                // Action
+            } label: {
+                AuthenticationOptionButton(title: "Continue with Google", imageName: "googleLogo")
+            }
+            
+            orDivider
+            
+            NavigationLink {
+                CreateAccountView()
+            } label: {
+                AuthenticationOptionButton(title: "Create account", imageName: "")
+            }
+        }
+    }
+    // -OR-
     var orDivider: some View {
         HStack {
             VStack {
@@ -64,39 +97,6 @@ extension SignedOutView {
             .padding(.bottom, 80)
         }
         .padding()
-    }
-    
-    var createAccountOptions: some View {
-        VStack {
-            Spacer()
-            
-            VStack(alignment: .leading){
-                Text("Introduce yourself. Join Twitter to create your Profile.")
-                    .font(.title2)
-                    .bold()
-            }
-            
-            Spacer()
-            
-            Button {
-                // Action
-            } label: {
-                AuthenticationOptionButton(title: "Continue with Apple", imageName: "appleLogo")
-            }
-            Button {
-                // Action
-            } label: {
-                AuthenticationOptionButton(title: "Continue with Google", imageName: "googleLogo")
-            }
-            
-            orDivider
-            
-            NavigationLink {
-                CreateAccountView()
-            } label: {
-                AuthenticationOptionButton(title: "Create account", imageName: "")
-            }
-        }
     }
     
     var logInPrompt: some View {

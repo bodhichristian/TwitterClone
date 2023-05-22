@@ -18,30 +18,29 @@ struct NewTweetView: View {
     @State private var showingImagePicker = false
     @State private var selectedImage: UIImage?
     
-    @FocusState private var focusTweetBody: Bool
+    @FocusState private var focusTweetEditor: Bool
     
     var body: some View {
         VStack {
-            headerView
-            tweetEditorView
-            replyPersmissionsView
+            headerView // Cancel, Tweet buttons
+            
+            tweetEditorView // Profile photo, audience, tweet body entry, optional media
+            
+            replyPersmissionsView // Public by default
             
             Divider()
             
-            tweetExtrasView
-            
+            tweetExtrasView // Tweet extras buttons
         }
-        .onAppear() {
-            focusTweetBody = true
+        .onAppear() { // Focus
+            focusTweetEditor = true
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $selectedImage)
         }
         // When didUploadTweet's change is published
         .onReceive(newTweetVM.$didUploadTweet) { success in
-            // If successfully uploaded
-            if success {
-                // Dismiss modal view
+            if success { // Dismiss modal view
                 presentationMode.wrappedValue.dismiss()
             }
         }
@@ -56,7 +55,7 @@ struct NewTweetView_Previews: PreviewProvider {
 }
 
 extension NewTweetView {
-    // Cancel, Tweet buttons
+
     var headerView: some View {
         HStack {
             Button {
@@ -88,7 +87,7 @@ extension NewTweetView {
         }
         .padding(.horizontal)
     }
-    // Profile photo, audience, tweet body
+    
     var tweetEditorView: some View {
         HStack(alignment: .top) {
             
@@ -136,7 +135,7 @@ extension NewTweetView {
                 
                 // Tweet body text editor
                 TextField("What's happening?", text: $tweetBody, axis: .vertical)
-                    .focused($focusTweetBody)
+                    .focused($focusTweetEditor)
                     .multilineTextAlignment(.leading)
                     .lineLimit(selectedImage != nil ? 4 : 100)
                     .padding(.vertical, 10)
@@ -166,7 +165,7 @@ extension NewTweetView {
             
         }
     }
-    // Reply persmissions
+    
     var replyPersmissionsView: some View {
         HStack {
             Image(systemName: "globe.asia.australia.fill")
@@ -177,7 +176,7 @@ extension NewTweetView {
         .font(.caption)
         .foregroundColor(.twitterBlue)
     }
-    // Tweet extras buttons
+    
     var tweetExtrasView: some View {
         HStack(spacing: 20) {
             Image(systemName: "mic.fill.badge.plus")
@@ -207,5 +206,4 @@ extension NewTweetView {
         .foregroundColor(.twitterBlue)
         .padding(.horizontal)
     }
-    
 }
