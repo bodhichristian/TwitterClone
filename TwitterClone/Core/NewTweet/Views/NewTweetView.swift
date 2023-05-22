@@ -55,7 +55,6 @@ struct NewTweetView_Previews: PreviewProvider {
 }
 
 extension NewTweetView {
-
     var headerView: some View {
         HStack {
             Button {
