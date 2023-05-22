@@ -23,11 +23,15 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            headerView
-            actionButton
-            aboutView
-            tweetFilterBar
-            tweetsView
+            headerView // Banner image, profile photo
+            
+            actionButton // Edit Profile or Follow Button
+            
+            aboutView // Name, @username, bio, profile info, network
+            
+            tweetFilterView // Tweet filter selection
+            
+            tweetsView // Feed of filtered tweets
             
             Spacer()
         }
@@ -51,14 +55,14 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 extension ProfileView {
+    // Banner image, profile photo
     var headerView: some View {
         ZStack(alignment: .topLeading) {
+            // Background color
             Color.twitterBlue
                 .ignoresSafeArea()
             
-            
-            VStack {
-            
+            VStack { // Display banner image if available
                 if let profileBannerImageUrl = viewModel.user.profileBannerImageUrl {
                     KFImage(URL(string: profileBannerImageUrl))
                         .resizable()
@@ -67,22 +71,19 @@ extension ProfileView {
                         .offset(y: 20)
                         .ignoresSafeArea()
                     
-                } else {
-
                 }
+                
                 Spacer()
             }
             
-            // Back Arrow
-            VStack {
+            VStack { // Back Arrow
                 Button {
                     mode.wrappedValue.dismiss()
                 } label: {
                     BackArrow()
                 }
                 
-                // Profile Picture
-                ZStack {
+                ZStack { // Display profile photo if available
                     if let profilePhoto = viewModel.user.profilePhotoUrl {
                         KFImage(URL(string: profilePhoto))
                             .resizable()
@@ -90,26 +91,25 @@ extension ProfileView {
                             .frame(width: 69)
                             .clipShape(Circle())
                             
-                    } else {
+                    } else { // If no photo is available, display placeholder
                         Circle()
                             .foregroundColor(.black)
                     }
 
-                    Circle()
+                    Circle() // Photo border
                         .stroke(style: StrokeStyle(lineWidth: 3))
                         .foregroundColor(.white)
                         .frame(width: 72)
                 }
-                .onTapGesture {
+                .onTapGesture { // Display EditProfileView
                     showingEditProfilePhotoView = true
                 }
                 .offset(x: 16, y: 44)
             }
         }
         .frame(height: 112)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true) // Hide native naviagtion
     }
-    
     // Edit Profile or Follow Button
     var actionButton: some View {
         HStack {
@@ -136,7 +136,7 @@ extension ProfileView {
         .padding(.trailing)
         .padding(.top, 4)
     }
-    
+    // Name, @username, bio, profile info, network
     var aboutView: some View {
         VStack(alignment: .leading, spacing: 2) {
             // ID Badge
@@ -197,8 +197,8 @@ extension ProfileView {
         // Top VStack modifiers
         .padding(.horizontal)
     }
-    
-    var tweetFilterBar: some View {
+    // Tweet filter selection
+    var tweetFilterView: some View {
         HStack {
             ForEach(TweetFilterViewModel.allCases, id: \.rawValue) { tweetFilter in
                 VStack {
@@ -227,7 +227,7 @@ extension ProfileView {
         }
         .overlay(Divider().offset(y: 14))
     }
-    
+    // Feed of filtered tweets
     var tweetsView: some View {
         ScrollView {
             LazyVStack {

@@ -23,19 +23,19 @@ class ProfileViewModel: ObservableObject {
     }
     
     var actionButtonTitle: String {
+        // If viewing own profile, Edit Profile button, else Follow button
         return user.isCurrentUser ? "Edit Profile" : "Follow"
     }
     
+    // Returns an array of Tweets for the selected filter
     func tweets(forFilter filter: TweetFilterViewModel) -> [Tweet] {
         switch filter {
         case .tweets:
             return tweets
         case .replies:
-            // Update to replies when ViewModel is updated
-            return tweets
+            return tweets // Update to replies when ViewModel is updated
         case .media:
-            // Update to media when ViewModel is updated
-            return tweets
+            return tweets // Update to media when ViewModel is updated
         case .likes:
             return likedTweets
         }
