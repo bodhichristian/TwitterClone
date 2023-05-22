@@ -17,19 +17,9 @@ struct ExploreView: View {
     
     var body: some View {
         VStack {
-            header
+            header // Profile photo, search bar, settings
             
-            ScrollView {
-                LazyVStack {
-                    ForEach(exploreVM.searchableUsers) { user in
-                        NavigationLink {
-                            ProfileView(user: user)
-                        } label: {
-                            UserRowView(user: user)
-                        }
-                    }
-                }
-            }
+            searchResults
         }
         .fullScreenCover(isPresented: $showingExploreSettingsView) {
             ExploreSettingsView()
@@ -46,6 +36,7 @@ struct ExploreView_Previews: PreviewProvider {
 }
 
 extension ExploreView {
+    // Profile photo, search bar, settings
     private var header: some View {
         HStack {
             // Profile Photo Button
@@ -87,5 +78,19 @@ extension ExploreView {
             }.opacity(showingSideMenu ? 0 : 1) // Transparent if showing side menu
         }
         .padding(.horizontal)
+    }
+    // Search results
+    private var searchResults: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(exploreVM.searchableUsers) { user in
+                    NavigationLink {
+                        ProfileView(user: user)
+                    } label: {
+                        UserRowView(user: user)
+                    }
+                }
+            }
+        }
     }
 }

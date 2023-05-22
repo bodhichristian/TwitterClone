@@ -19,8 +19,8 @@ struct FeedView: View {
     var body: some View {
         
         VStack {
-            header
-            feed
+            header // Profile photo, twitter logo, feed selector
+            feed // Display fetched tweets
         }
     }
 }
@@ -33,6 +33,7 @@ struct FeedView_Previews: PreviewProvider {
 }
 
 extension FeedView {
+    // Profile photo, twitter logo, feed selector
     var header: some View {
         ZStack{
             // Header background
@@ -115,7 +116,7 @@ extension FeedView {
         }
         .padding(.bottom, 10)
     }
-    
+    // Display fetched tweets
     var feed: some View {
         // Tweets
         ScrollView {
