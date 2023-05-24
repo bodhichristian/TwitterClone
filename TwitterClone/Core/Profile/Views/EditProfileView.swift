@@ -131,7 +131,7 @@ struct EditProfileView_Previews: PreviewProvider {
 
 extension EditProfileView {
     // Reveal ImagePicker on tap gesture
-    var bannerImageSelector: some View {
+    private var bannerImageSelector: some View {
         ZStack {
             // If user does not have a banner image
             if viewModel.currentUser?.profileBannerImageUrl  == nil {
@@ -167,7 +167,7 @@ extension EditProfileView {
         }
     }
     // Reveal ImagePicker on tap gesture
-    var profileImageSelector: some View {
+    private var profileImageSelector: some View {
         HStack {
             ZStack{
                 // If user does not have a profile photo
@@ -227,7 +227,7 @@ extension EditProfileView {
         .padding(.bottom, -55)
     }
     // Name, @username, location, website
-    var profileDetailsForm: some View {
+    private var profileDetailsForm: some View {
         VStack {
             Divider()
                 .padding(.top)
@@ -333,7 +333,7 @@ extension EditProfileView {
             }        }
     }
     // Switch to professional, Tips
-    var additionalTools: some View {
+    private var additionalTools: some View {
         VStack {
             // Switch to Professional
             NavigationLink { // Placeholder view

@@ -56,7 +56,7 @@ struct NewTweetView_Previews: PreviewProvider {
 }
 
 extension NewTweetView {
-    var headerView: some View {
+    private var headerView: some View {
         HStack {
             Button {
                 presentationMode.wrappedValue.dismiss()
@@ -88,7 +88,7 @@ extension NewTweetView {
         .padding(.horizontal)
     }
     
-    var tweetEditorView: some View {
+    private var tweetEditorView: some View {
         HStack(alignment: .top) {
             
             // If no profile photo exists, display a placeholder circle
@@ -166,7 +166,7 @@ extension NewTweetView {
         }
     }
     
-    var replyPersmissionsView: some View {
+    private var replyPersmissionsView: some View {
         HStack {
             Image(systemName: "globe.asia.australia.fill")
             Text("Everyone can reply")
@@ -177,7 +177,7 @@ extension NewTweetView {
         .foregroundColor(.twitterBlue)
     }
     
-    var tweetExtrasView: some View {
+    private var tweetExtrasView: some View {
         HStack(spacing: 20) {
             Image(systemName: "mic.fill.badge.plus")
                 .foregroundColor(Color(red: 0.45, green: 0.3, blue: 0.9))

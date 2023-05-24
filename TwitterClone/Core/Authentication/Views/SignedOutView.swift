@@ -31,7 +31,7 @@ struct SignedOutView_Previews: PreviewProvider {
 }
 
 extension SignedOutView {
-    var createAccountOptions: some View {
+    private var createAccountOptions: some View {
         VStack {
             Spacer()
             
@@ -64,7 +64,7 @@ extension SignedOutView {
         }
     }
     // -OR-
-    var orDivider: some View {
+    private var orDivider: some View {
         HStack {
             VStack {
                 Divider()
@@ -81,7 +81,7 @@ extension SignedOutView {
         .padding(.horizontal, 40)
     }
     
-    var termsView: some View {
+    private var termsView: some View {
         VStack(alignment: .leading) {
             (
                 Text("By signing up, you agree to our ") +
@@ -99,7 +99,7 @@ extension SignedOutView {
         .padding()
     }
     
-    var logInPrompt: some View {
+    private var logInPrompt: some View {
         HStack(spacing: 0) {
             Text("Have an account already? ")
             NavigationLink("Log in", destination: LogInView())

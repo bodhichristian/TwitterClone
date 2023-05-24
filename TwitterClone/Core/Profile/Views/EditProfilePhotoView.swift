@@ -74,7 +74,7 @@ struct EditProfilePhotoView_Previews: PreviewProvider {
 
 extension EditProfilePhotoView {
     // Display user's profile photo or placeholder
-    var profilePhotoView: some View {
+    private var profilePhotoView: some View {
         ZStack {
             if let profilePhotoUrl = viewModel.currentUser?.profilePhotoUrl {
                 KFImage(URL(string: profilePhotoUrl))
@@ -128,7 +128,7 @@ extension EditProfilePhotoView {
         }
     }
     // Launches ImagePicker
-    var editButton: some View {
+    private var editButton: some View {
         HStack {
             Button {
                 showingImagePicker = true

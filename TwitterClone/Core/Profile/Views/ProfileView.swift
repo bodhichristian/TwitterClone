@@ -53,7 +53,7 @@ struct ProfileView_Previews: PreviewProvider {
 
 extension ProfileView {
     // Banner image, profile photo
-    var headerView: some View {
+    private var headerView: some View {
         ZStack(alignment: .topLeading) {
             // Background color
             Color.twitterBlue
@@ -108,7 +108,7 @@ extension ProfileView {
         .navigationBarBackButtonHidden(true) // Hide native naviagtion
     }
     // Edit Profile or Follow Button
-    var actionButton: some View {
+    private var actionButton: some View {
         HStack {
             Spacer()
             
@@ -134,7 +134,7 @@ extension ProfileView {
         .padding(.top, 4)
     }
     // Name, @username, bio, profile info, network
-    var aboutView: some View {
+    private var aboutView: some View {
         VStack(alignment: .leading, spacing: 2) {
             // ID Badge
             HStack(spacing: 4) {
@@ -195,7 +195,7 @@ extension ProfileView {
         .padding(.horizontal)
     }
     // Tweet filter selection
-    var tweetFilterView: some View {
+    private var tweetFilterView: some View {
         HStack {
             ForEach(TweetFilterViewModel.allCases, id: \.rawValue) { tweetFilter in
                 VStack {
@@ -225,7 +225,7 @@ extension ProfileView {
         .overlay(Divider().offset(y: 14))
     }
     // Feed of filtered tweets
-    var tweetsView: some View {
+    private var tweetsView: some View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.tweets(forFilter: self.selectedFilter)) { tweet in

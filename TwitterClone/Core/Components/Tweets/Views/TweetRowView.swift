@@ -47,7 +47,7 @@ struct TweetRowView_Previews: PreviewProvider {
 }
 
 extension TweetRowView {
-    var userProfilePhoto: some View {
+    private var userProfilePhoto: some View {
         VStack {
             // Display profile photo if present
             if let profilePhoto = viewModel.tweet.user?.profilePhotoUrl {
@@ -68,7 +68,7 @@ extension TweetRowView {
         }
     }
     
-    var header: some View {
+    private var header: some View {
         HStack(alignment: .bottom, spacing: 4) {
             // Unwrap user info
             if let user = viewModel.tweet.user {
@@ -98,7 +98,7 @@ extension TweetRowView {
         }
     }
     
-    var tweetContent: some View {
+    private var tweetContent: some View {
         VStack {
             // Tweet body
             Text(viewModel.tweet.body)
@@ -117,7 +117,7 @@ extension TweetRowView {
         }
     }
     
-    var tweetActions: some View {
+    private var tweetActions: some View {
         HStack {
             // Reply
             Button {

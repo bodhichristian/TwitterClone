@@ -39,7 +39,7 @@ struct MainTabView_Previews: PreviewProvider {
 }
 
 extension MainTabView {
-    var tabView: some View {
+    private var tabView: some View {
         TabView(selection: $selectedTab){
             FeedView(showingSideMenu: $showingSideMenu)
                 .tabItem {
@@ -100,7 +100,7 @@ extension MainTabView {
         }
     }
     
-    var newTweetButton: some View {
+    private var newTweetButton: some View {
         VStack {
             Spacer()
             HStack(alignment: .bottom) {
@@ -127,7 +127,7 @@ extension MainTabView {
         }
     }
     
-    var sideMenu: some View {
+    private var sideMenu: some View {
         ZStack {
             if showingSideMenu { // Overlays background when Side Menu is visible
                 Color.black.opacity(0.4)

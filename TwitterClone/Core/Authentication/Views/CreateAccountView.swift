@@ -77,7 +77,7 @@ struct CreateAccountView_Previews: PreviewProvider {
 
 
 extension CreateAccountView {
-    var registrationForm: some View {
+    private var registrationForm: some View {
         VStack(spacing: 15){
             Group {
                 // Name
@@ -139,7 +139,7 @@ extension CreateAccountView {
         .padding()
     }
     
-    var createAccountButton: some View {
+    private var createAccountButton: some View {
         VStack{
             Spacer()
             

@@ -71,7 +71,7 @@ struct LogInView_Previews: PreviewProvider {
 
 extension LogInView {
     // Email and password
-    var credentialEntry: some View {
+    private var credentialEntry: some View {
         VStack{
             // Phone, email, or @username
             TextField(loginTitleKey, text: $userID)
@@ -87,7 +87,7 @@ extension LogInView {
         }
     }
     // Log in, Forgot Password
-    var logInButtons: some View {
+    private var logInButtons: some View {
         HStack{
             Spacer()
             

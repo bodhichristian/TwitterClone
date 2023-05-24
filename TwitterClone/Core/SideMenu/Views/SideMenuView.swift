@@ -61,7 +61,7 @@ struct SideMenuView_Previews: PreviewProvider {
 }
 
 extension SideMenuView {
-    var accountOverview: some View {
+    private var accountOverview: some View {
         HStack {
             // Display name, username, user stats
             VStack(alignment: .leading) {
@@ -115,7 +115,7 @@ extension SideMenuView {
         .padding(.bottom)
     }
     
-    var featuresView: some View {
+    private var featuresView: some View {
         ForEach(SideMenuFeaturesViewModel.allCases, id: \.rawValue) { label in
             NavigationLink {
                 switch label {
@@ -141,7 +141,7 @@ extension SideMenuView {
         }
     }
     
-    var toolsView: some View {
+    private var toolsView: some View {
         ForEach(SideMenuToolsViewModel.allCases, id: \.rawValue){ tool in
             DisclosureGroup {
                 if tool == .settingsAndSupport {
@@ -174,7 +174,7 @@ extension SideMenuView {
         
     }
     
-    var themeIndicator: some View {
+    private var themeIndicator: some View {
         HStack {
             Image(systemName: colorScheme == .dark ? "moon.stars" : "sun.min")
                 .font(.title2)

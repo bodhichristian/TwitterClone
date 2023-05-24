@@ -34,7 +34,7 @@ struct FeedView_Previews: PreviewProvider {
 
 extension FeedView {
     // Profile photo, twitter logo, feed selector
-    var header: some View {
+    private var header: some View {
         ZStack{
             // Header background
             Rectangle().foregroundStyle(.clear)
@@ -117,7 +117,7 @@ extension FeedView {
         .padding(.bottom, 10)
     }
     // Display fetched tweets
-    var feed: some View {
+    private var feed: some View {
         // Tweets
         ScrollView {
             LazyVStack {
